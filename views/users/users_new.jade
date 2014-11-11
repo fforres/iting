@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+	.row.initial
+		.col-xs-11.col-sm-11s.col-centered
+			include ../snipets/errors
+			.col-md-12 
+				h1 Crea tu cuenta en Iting
+				p asddasd
+			form.form-horizontal(name="loginForm" method="post" action="")
+				.form-group
+					label(for="nombre").control-label.col-md-3 Nombre
+					.col-md-7
+						input.form-control(type="text" name="nombre" id="nombre" placeholder="Nombre")
+				
+				.form-group
+					label(for="apellido").control-label.col-md-3 Apellido
+					.col-md-7
+						input.form-control(type="text" name="apellido" id="apellido" placeholder="Apellido")
+				
+				.form-group
+					label(for="email").control-label.col-md-3 E-mail 
+					.col-md-7
+						input.form-control(type="email" name="email" id="email" placeholder="Mail")
+				
+				.form-group
+					label(for="password").control-label.col-md-3 Password
+					.col-md-7
+						input.form-control(type="password" name="password" id="password" placeholder="Password")
+				
+				.form-group
+					label(for="password2").control-label.col-md-3 Repite tu Password
+					.col-md-7
+						input.form-control(type="password" name="password2" id="password2" placeholder="Repite tu Password")
+				
+				.form-group
+					.col-md-7
+						button.btn.btn-default.pull-right(type="submit") Registrarse

@@ -1,0 +1,52 @@
+extends ../layoutAdmins
+
+block content
+	.row.initial
+		.col-xs-10.col-sm-10.col-centered
+			include ../../snipets/errors
+			h1.col-md-12 Borrar Restaurant: #{restaurantes.nombre}
+			form.form-horizontal(name="loginForm" method="post" action="")
+				.form-group
+					label(for="nombre").control-label.col-md-3 Nombre del Local
+					.col-md-8
+						input.form-control(disabled type="text" value="#{restaurantes.nombre}" name="nombre" id="nombre" placeholder="Nombre")
+				
+				.form-group
+					label(for="direccion").control-label.col-md-3 Dirección
+					.col-md-8
+						input.form-control(disabled type="text" value="#{restaurantes.direccion}"  name="direccion" id="direccion" placeholder="Dirección")
+				
+				.form-group
+					label(for="comuna").control-label.col-md-3 Comuna
+					.col-md-8
+						select.form-control(disabled name="comuna" id="comuna" placeholder="Comuna")
+							each comuna in comunas
+								option(value="#{comuna._id}") #{comuna.nombre}
+				
+				.form-group
+					label(for="tipo").control-label.col-md-3 Tipo de Local
+					.col-md-8
+						input.form-control(disabled type="text" value="#{restaurantes.tipo}"  name="tipo" id="tipo" placeholder="Tipo")
+				
+				.form-group
+					label(for="web").control-label.col-md-3 Web
+					.col-md-8
+						input.form-control(disabled type="url" value="#{restaurantes.web}"  name="web" id="web" placeholder="Web")
+				
+				.form-group
+					label(for="email").control-label.col-md-3 Mail de Contacto
+					.col-md-8
+						input.form-control(disabled type="email" value="#{restaurantes.email}"  name="email" id="email" placeholder="Mail")
+				
+				.form-group
+					label(for="telefono").control-label.col-md-3 Teléfono #{restaurantes.enabled}
+					.col-md-8
+						input.form-control(disabled type="tel" value="#{restaurantes.telefono}"  name="telefono" id="telefono" placeholder="Teléfono")
+				if (restaurantes.enabled == true)
+					.form-group
+						.col-md-8
+							button.btn.btn-default.pull-right(type="submit" value="Login") Borrar Restaurante
+				else
+					.form-group
+						.col-md-8
+								button.btn.btn-default.pull-right(type="submit" value="Login") DesBorrar Restaurante

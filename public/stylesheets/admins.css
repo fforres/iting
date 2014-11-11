@@ -1,0 +1,34 @@
+.content{ 
+	margin-top: 50px;
+}
+.initial{
+	margin-top: 50px;
+}
+
+.content{
+	margin-top:20px;
+}
+.alertsContainer h2{
+	margin-bottom: 16px;
+}
+
+.alertsContainer .errores p.error_text{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.alertsContainer .errores p.error_text:last-child{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.alertsContainer .exitos p.exito_text{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.alertsContainer .exitos p.exito_text:last-child{
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+/*LISTADO LOCALES*/
+

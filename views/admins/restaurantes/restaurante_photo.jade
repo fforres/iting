@@ -1,0 +1,23 @@
+extends ../layoutAdmins
+
+block content
+	.row.initial
+		.col-xs-10.col-sm-10.col-centered
+				include ../../snipets/errors
+				h1.col-md-12 Editar Restaurant: #{restaurantes.nombre}
+				form.form-horizontal(name="loginForm" method="post" action="" )
+					.form-group
+						label(for="nombre").control-label.col-md-3 Foto de Perfil para Local
+						.col-md-8
+							.fileinput.fileinput-new(data-provides="fileinput")
+								.fileinput-preview.thumbnail(data-trigger="fileinput" style="width:200px; height:150px;")
+								div
+									span.btn.btn-default.btn-file
+										span.fileinput-new Select Image
+										span.fileinput-exists Change 
+										input(type="file" name="photo")
+									a(href="#" data-dismiss="fileinput").btn.btn-default.fileinput-exists Remove
+
+					.form-group
+						.col-md-8
+							button.btn.btn-default(type="submit" value="Login") Subir

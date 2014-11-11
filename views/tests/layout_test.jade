@@ -1,0 +1,28 @@
+doctype html
+html
+	head
+		if title
+			title #{title}
+		else
+			title Iting
+		meta(http-equiv='content-type', charset='UTF-8')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+		meta(http-equiv='X-UA-Compatible' content='IE=edge')
+
+
+		link(rel='stylesheet', href='/stylesheets/bootstrap.min.css')
+		link(rel='stylesheet', href='/stylesheets/bootstrap-theme.min.css') 
+		link(rel='stylesheet', href='/stylesheets/chuckie.css')
+
+	body.tests
+		include ../head
+		block content
+		include ../snipets/modal_login
+
+			
+
+	script(type='text/javascript' src='/javascripts/jquery-2.1.0.min.js')
+	script(type="text/javascript" src="/javascripts/bootstrap.js")
+	script(type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp")
+	script(type="text/javascript" src="/javascripts/maps.js")
+

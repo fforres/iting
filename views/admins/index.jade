@@ -1,0 +1,11 @@
+extends layoutAdmins
+
+block content
+	.row.initial
+		.col-xs-10.col-sm-10.col-centered
+			form(role="search")
+				.input-group
+					input(type="text" placeholder="Fantasía" name="srch-term" id="srch-term").form-control.bigsearch
+					.input-group-btn
+						button(type="submit").btn.btn-default
+							span.glyphicon.glyphicon-search.bigsearch-icon

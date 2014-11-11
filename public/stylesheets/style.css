@@ -1,0 +1,8 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+.col-centered{
+	margin:0 auto;
+	float:none;
+}

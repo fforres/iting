@@ -1,0 +1,30 @@
+html, body {
+	height:100%;
+}
+#myCarousel{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+#notcarrousel{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+#myCarousel .carousel,
+#myCarousel .item,
+#myCarousel .active {
+	height:100%;
+}
+
+#myCarousel .carousel-inner {
+	height:100%;
+}
+
+#myCarousel .fill {
+	width:100%;
+	height:100%;
+	background-position: center;
+	background-size: cover;
+}

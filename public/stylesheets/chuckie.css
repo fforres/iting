@@ -1,0 +1,218 @@
+
+body{
+	background: 	#eee;
+
+}
+.content {
+	padding-top: 50px;
+	height: 100%;
+}
+.index_carrousel{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+}
+
+.index.fullheight{
+	height: 100%;
+	padding-left: 10%;
+	padding-right: 10%;
+}
+.fullheight{
+	height: 90%;
+}
+
+
+
+/*
+ALERTS!
+*/
+
+.alertsContainer{
+	position: relative;
+	z-index: 1;
+}
+.alertsContainer h2 {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-left: 15px;
+}
+
+.alertRow{
+	position: 	absolute	;	
+	margin-left: 5px;
+	width: 	100%;
+	margin-top: 20px;
+}
+
+
+
+
+
+/*
+Sección Busqueda
+*/
+#Busqueda h1 {
+    vertical-align:middle;
+	text-align: left;
+	color:#f1f1f1;
+	font-style: oblique;
+	font-weight: bolder;
+	text-shadow: 3px 2px #474747;
+	margin-bottom: 30px;
+
+}
+#Busqueda form {
+	margin-bottom: 20px;
+}
+#Busqueda .bigsearch{
+   padding: 26px 17px;
+   font-size: 30px;
+
+}
+
+#Busqueda .bigsearch-icon{
+	font-size: 26px;
+	padding-top: 7px;
+	padding-bottom: 7px;
+	margin-left: 1px;
+	margin-right: 1px;
+}
+
+#Busqueda form input::-webkit-input-placeholder 	{
+	opacity: 1;
+    transition: opacity 1s;
+}
+
+#Busqueda form input.fade::-webkit-input-placeholder 	{ 
+	opacity: 0.5;
+}
+
+
+#Busqueda .fullheight.is-Table { display: table; }
+#Busqueda .fullheight.is-Table .Table-Cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+#Busqueda .fullheight.is-Table .Center-Block {
+  width: 50%;
+  margin: 0 auto;
+}
+
+#Busqueda .fullheight.is-Table .TheTableContent{
+	padding-bottom: 20px;
+	padding-top: 20px;
+	padding-left: 20px;
+	padding-right: 20px;
+	background-color: rgba(40,40,40,0.7);
+	border-radius: 0px;
+	box-shadow: 0px 0px 20px rgba(150,150,150,0.7);
+}
+
+
+/*
+Sección sobre nosotros
+*/
+#sobreNosotros{
+	background: 	#eee;
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
+#sobreNosotros h1.title{
+	padding-bottom: 30px;
+	padding-top: 30px;
+	font-size: 46px;
+	font-weight: 900;
+}
+
+#sobreNosotros h1.title .small{
+	padding-bottom: 30px;
+	padding-top: 30px;
+	padding-left: 30px;
+}
+
+
+#sobreNosotros p{
+	padding-top: 20px;
+}
+#sobreNosotros .icons{
+	font-size: 50px;
+
+}
+
+
+
+
+/*
+Sección Como usar iting
+*/
+#comoComprar{
+	background: 	#fd4d4f;
+	color: white;
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
+
+#comoComprar h1.title{
+	padding-bottom: 30px;
+	padding-top: 30px;
+	font-size: 46px;
+	font-weight: 900;
+}
+
+
+#comoComprar h1 .small{
+	padding-bottom: 30px;
+	padding-top: 30px;
+	padding-left: 30px;
+}
+
+
+
+
+#comoComprar h1.downTitle{
+	position: relative;
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+
+
+/*
+Sección Contactanos
+*/
+#Contactanos{
+	background: 	#eee;
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
+
+#Contactanos h1.title{
+	padding-bottom: 30px;
+	padding-top: 30px;
+	font-size: 46px;
+	font-weight: 900;
+}
+
+
+#Contactanos h1 .small{
+	padding-top: 30px;
+}
+#Contactanos h3{
+	padding-bottom: 30px;
+	padding-top: 30px;
+}
+
+
+
+/*
+Sección Footer
+*/
+#footer{
+	background: 	#eee;
+	padding-top: 45px;
+	padding-bottom: 45px;
+}
+#footer hr{
+	border-top: 1px solid #ccc;
+}
+

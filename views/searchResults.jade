@@ -1,0 +1,16 @@
+extends layout
+
+block content
+	include snipets/errors
+	
+	.row.fullheight.index
+		.col-xs-12.col-sm-12.fullheight
+			h1 Restaurantes
+			.restaurantes-container.col-md-9
+				each restaurant,i in rest
+					.restaurant(attr-numero='#{i}')
+						strong.nombre
+							h3 
+								a(href="/restaurant/#{restaurant._id}").url #{restaurant.nombre}
+						small #{restaurant.comuna}
+	

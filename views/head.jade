@@ -1,0 +1,48 @@
+nav(class="navbar navbar-fixed-top navbar-inverse" role="navigation")
+	div(class="container")
+		div(class="navbar-header")
+			button(type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse")
+				span(class="sr-only") Toggle navigation
+				span(class="icon-bar")
+				span(class="icon-bar")
+				span(class="icon-bar")
+
+			//button(type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="")
+				span(class="sr-only") Toggle navigation
+				span(class="icon-bar")
+				span(class="icon-bar")
+				span(class="icon-bar")
+			a(class="navbar-brand" href="/") Iting
+
+		div(class="collapse navbar-collapse navbar-ex1-collapse")
+			ul.nav.navbar-nav
+				li
+					a(href="#sobreNosotros").scroll-link Sobre Nosotros
+				li
+					a(href="#comoComprar").scroll-link Como Usar Iting
+				li
+					a(href="#Contactanos").scroll-link Contáctanos
+
+			ul.nav.navbar-nav.navbar-right
+				if (isLoggedIn == false)
+					li
+						a(href="#login" class="login" data-toggle="modal" data-target="#loginModal") Ingresa
+				else
+					if locals.rol.isAdmin
+						li
+							a(href="/admins/restaurantes") Administracion
+
+					li
+						a(data-toggle="dropdown" href="#").dropdown-toggle 
+							i.fa.fa-cog Configuracion 
+								span.caret
+						ul.dropdown-menu
+							li
+								a(href="/profile").logout 
+									i.fa.fa-user.fa-fw Perfil
+							li.divider
+							li
+								a(href="/logout").logout Salir
+					
+				
+				

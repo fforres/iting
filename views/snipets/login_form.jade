@@ -1,0 +1,30 @@
+form.form-horizontal(name="loginForm" method="post" action="login")
+	
+	.form-group
+		label(for="email").control-label.col-md-3 E-mail 
+		.col-md-7
+			input.form-control(type="email" name="email" id="email" placeholder="Ingresa tu Mail")
+
+	.form-group
+		label(for="password").control-label.col-md-3 Password
+		.col-md-7
+			input.form-control(type="password" name="password" id="password" placeholder="Ingresa tu Password")
+
+	.form-group
+		.col-md-3
+		.col-md-7
+			button.btn.btn-primary.pull-right(type="submit" value="Login") Login 
+	hr
+
+	.form-group
+		.col-md-3
+		.col-md-7
+				small ¿No tienes cuenta?
+				a.btn.btn-success.pull-right(href="/register") Regístrate
+	.form-group
+		.col-md-3
+		.col-md-7
+				small ¿Perdiste tu clave?
+				button.btn.btn-warning.pull-right.disabled(href="#") Recuperar Password
+
+	

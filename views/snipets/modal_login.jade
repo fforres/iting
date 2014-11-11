@@ -1,0 +1,9 @@
+.modal.login-modal.fade#loginModal(tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true")
+	.modal-dialog
+		.modal-content
+			.modal-header
+				button.close(data-dismiss="modal" aria-hidden="true" type="button") &times
+				h1.modal-title#loginModalLabel ¿Ya tienes cuenta?
+
+			.modal-body
+				include login_form

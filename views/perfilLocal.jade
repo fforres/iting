@@ -1,0 +1,38 @@
+extends layout
+
+block content
+	.row.initial
+		.col-xs-11.col-sm-11s.col-centered
+			include snipets/errors
+
+			h1 
+				a(href="#{restaurant.web}") #{restaurant.nombre}
+			.form-group
+				.col-md-12.col-centered
+					.col-md-3
+						h3 Teléfono
+					.col-md-7
+						a(href="tel:#{restaurant.telefono}") #{restaurant.telefono}
+
+				.col-md-12.col-centered
+					.col-md-3
+						h3 Email
+					.col-md-7
+						a(href="mailto:#{restaurant.email}?subject=Hola #{restaurant.nombre} ") #{restaurant.email}
+							
+
+				.col-md-12.col-centered
+					.col-md-3
+						h3 Tipo
+					.col-md-7
+						| #{tipodelocal.nombreFantasia}
+				.col-md-12.col-centered
+					.col-md-3
+						h3 Comuna
+					.col-md-7
+						| #{comuna.nombre}
+				.col-md-12.col-centered
+					.col-md-3
+						h3 Dirección
+					.col-md-7
+						| #{comuna.direccion}

@@ -1,0 +1,56 @@
+
+.row.alertRow
+	.col-xs-11.col-sm-11.col-centered
+		.alertsContainer
+			if (messages)
+				if (messages.success)
+					.alert.alert-success.alert-dismissable.success.fade.in
+						button(type="button" data-dismiss="alert" aria-hidden="true").close &times;
+						.col-xs-11.col-sm-11.col-centered
+							h2 :-) !
+							each val,key in messages.success
+								p.success_text #{val.msg}
+
+				if (messages.info)
+					.alert.alert-info.alert-dismissable.info.fade.in
+						button(type="button" data-dismiss="alert" aria-hidden="true").close &times;
+						.col-xs-11.col-sm-11.col-centered
+							h2 Weeoe!
+							each val,key in messages.info
+								p.info_text #{val.msg}
+
+				if (messages.access)
+					.alert.alert-info.alert-dismissable.info.fade.in
+						button(type="button" data-dismiss="alert" aria-hidden="true").close &times;
+						.col-xs-11.col-sm-11.col-centered
+							h2 Alto ahi!
+							each val,key in messages.access
+								p.info_text #{val.msg}
+
+
+				if (messages.warning)
+					.alert.alert-warning.alert-dismissable.warning.fade.in
+						button(type="button" data-dismiss="alert" aria-hidden="true").close &times;
+						.col-xs-11.col-sm-11.col-centered
+							h2 Congrats!!
+							each val,key in messages.warning
+								p.warning_text #{val.msg}
+				if (messages.form)
+					.alert.alert-warning.alert-dismissable.form.fade.in
+						button(type="button" data-dismiss="alert" aria-hidden="true").close &times;
+						.col-xs-11.col-sm-11.col-centered
+							h2 !
+							p.form_text Los siguientes campos tienen errores, por favor revisa que estén correctamente ingresados:
+							ul
+							each val,key in messages.form
+								li #{val.field.param}
+
+				if (messages.danger)
+					.alert.alert-danger.alert-dismissable.danger.fade.in
+						button(type="button" data-dismiss="alert" aria-hidden="true").close &times;
+						.col-xs-11.col-sm-11.col-centered
+							h2 Houston!!
+							each val,key in messages.danger
+								p.danger_text #{val.msg}
+
+			

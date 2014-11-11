@@ -1,0 +1,141 @@
+extends layout
+
+block content
+	#myCarousel.carousel.slide.index_carrousel
+		.carousel-inner
+			.item.active
+				.fill(style="background-image:url('images/slider/1.jpg');")
+			.item
+				.fill(style="background-image:url('images/slider/2.jpg');")
+			.item
+				.fill(style="background-image:url('images/slider/3.jpg');")
+			.item
+				.fill(style="background-image:url('images/slider/4.jpg');")
+			.item
+				.fill(style="background-image:url('images/slider/5.jpg');")
+
+
+	include snipets/errors
+	
+	#notcarrousel
+		.row.fullheight.index#Busqueda
+			.col-xs-12.col-sm-12.fullheight.is-Table
+				.Table-Cell
+					.TheTableContent
+						h1.fullheight-titulo.hidden-xs Hoy quiero comida:
+						h1.fullheight-titulo.visible-xs Hoy quiero:
+						form(role="search")
+							.input-group
+								input(type="text" placeholder="" name="srch-term" id="srch-term").form-control.bigsearch
+								.input-group-btn
+									button(type="submit").btn.btn-default
+										span.glyphicon.glyphicon-search.bigsearch-icon
+		.row#sobreNosotros
+			.col-xs-11.col-sm-11.col-centered
+				h1.title Sobre Nosotros
+					.small.hidden-xs Así es el equipo de Iting
+					.small.visible-xs Así somos en Iting
+				.col-md-4
+					blockquote 
+						h1.text-center.icons 
+							i.fa.fa-thumbs-up.fa-fw 
+						p Que puedo decir, somos 
+							strong Geeks 
+							| nos encanta lo que hacemos, y nos gusta hacerlo bien.
+							footer Ignacio "Cerck" Martinez
+								h6 Marketing Strategist y social Media
+
+				.col-md-4
+					blockquote 
+						h1.text-center.icons
+							i.fa.fa-bullseye.fa-fw 
+						p Es genial poder entregar un producto  
+							strong Preciso 
+							| y que realmente ayude a quien lo use.
+							footer Felipe "Forres" Torres
+								h6 Lead Developer & CTO
+
+				.col-md-4
+					blockquote 
+						h1.text-center.icons
+							i.fa.fa-mail-reply.fa-fw 
+						p Nos gusta solucionar problemas usando TI, y más aún cuando ésta es de 
+							strong última generación
+							| 
+							footer Gustavo "Tavo" Hidalgo
+								h6 The Sales 
+
+		.row#comoComprar
+			.col-xs-11.col-sm-11.col-centered.text-center
+				h1.title ¿Como usar Iting?
+					.small 3 simples pasos! 
+				.col-md-4
+					h3 Primero
+					h1 Regístrate
+						.small Con tu correo o cuenta de redes sociales
+					h1.text-center.icons 
+						i.fa.fa-envelope-o.fa-fw 
+						i.fa.fa-facebook.fa-fw 
+						i.fa.fa-twitter.fa-fw 
+					hr.visible-sm.visible-xs
+
+				.col-md-4
+					h3 Segundo
+					h1 Elige un local
+						.small O pide recomendaciones a nuestros expertos
+					h1.text-center.icons 
+						i.fa.fa-hand-o-right.fa-fw 
+					hr.visible-sm.visible-xs
+
+				.col-md-4
+					h3 Tercero
+					h1 Interactúa!
+						.small Reserva una mesa, realiza tu pedido, comenta, 
+							strong vota!
+					h1.text-center.icons 
+						i.fa.fa-comment-o.fa-fw 
+						i.fa.fa-thumbs-o-up.fa-fw 
+						i.fa.fa-thumbs-o-down.fa-fw 
+					hr.visible-sm.visible-xs
+
+			.col-md-12.text-center
+				.col-md-6.col-centered.text-center
+					hr.visible-md.visible-lg
+					h1.downTitle 
+						i.fa.fa-check-square-o.fa-fw 
+						¿Simple, no?
+
+
+				
+		.row#Contactanos
+			.col-xs-11.col-sm-11.col-centered.text-center
+				.col-md-6.col-centered
+					h1.title ¿Tienes alguna idea?
+						.small ¿Consulta? ¿Sugerencia? ¿Reclamo?
+				.col-md-9.col-centered
+					p
+					h3 Quizás sólo quieras conversar un rato, quizás buscas trabajo, o contarnos lo mucho que te gusta Iting. De cualquier manera:
+				
+				.col-md-6.col-centered
+					h1 Contáctanos! 
+						.small Usamos Twitter, Facebook o Correo
+					h1.text-center.icons 
+						a(href="http://www.twitter.com/cerck")
+							i.fa.fa-twitter.fa-fw 
+						a(href="http://www.facebook.com/fforr.es")
+							i.fa.fa-facebook.fa-fw 
+						a(href="mailto:contacto@iting.com?Subject=Tengo una idea!")
+							i.fa.fa-envelope-o.fa-fw 
+
+				
+		.row#footer
+			.col-xs-11.col-sm-11.col-centered.text-right
+				hr
+				.col-md-12.col-centered
+					h5 Designed by 
+						a(href="http://www.twitter.com/fforres") @fforres
+					h5 MIT license 
+
+
+
+

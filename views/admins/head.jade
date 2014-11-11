@@ -1,0 +1,46 @@
+nav.navbar.navbar-fixed-top.navbar-inverse(role="navigation")
+	div.container
+		div.navbar-header
+			button(type="button" data-toggle="collapse" data-target=".navbar-ex1-collapse").navbar-toggle
+				span(class="sr-only") Toggle navigation
+				span(class="icon-bar")
+				span(class="icon-bar")
+				span(class="icon-bar")
+
+			a(class="navbar-brand" href="/") Iting!
+
+		div.collapse.navbar-collapse.navbar-ex1-collaps
+			if (isLoggedIn == false)
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href="#login" class="login" data-toggle="modal" data-target="#loginModal") Ingresa
+			else
+				ul.nav.navbar-nav
+					li
+						a(data-toggle="dropdown" href="#").dropdown-toggle Restaurantes
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href="/admins/restaurantes") Todos
+							li
+								a(href="/admins/restaurantes/deleted").logout Borrados
+					
+					li
+						a(data-toggle="dropdown" href="#").dropdown-toggle Usuarios
+							span.caret
+						ul.dropdown-menu
+							li
+								a(href="/admins/users") Todos
+
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(data-toggle="dropdown" href="#").dropdown-toggle 
+							i.fa.fa-cog  Config 
+								span.caret
+						ul.dropdown-menu
+							li
+								a(href="/profile").logout 
+									i.fa.fa-user.fa-fw Perfil
+							li.divider
+							li
+								a(href="/logout").logout Salir

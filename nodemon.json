@@ -1,0 +1,8 @@
+{
+	"verbose": true,
+	"ignore": ["*.jade", "public/*", "node_modules/*", "bin/*", "*.json"],
+	"execMap": {
+		"rb": "ruby",
+		"pde": "processing --sketch={{pwd}} --run"
+	}
+}

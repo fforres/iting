@@ -1,0 +1,32 @@
+extends ../layoutAdmins
+
+block content
+	.row.initial
+		.col-xs-11.col-sm-11.col-centered
+			include ../../snipets/errors
+			.col-md-11
+				a(href="/admins/userses/new").btn.btn-default Nuevo User
+			.table-responsive
+				table.table.table-condensed
+					thead
+						tr
+							th #
+							th Nombre
+							th Roles
+							//th Local
+					tbody
+						each user,i in users
+							tr
+								td #{i+1}
+								td
+									strong
+										a(href="##{user.nombre}") #{user.email}
+								td
+									a(href="/admins/users/edit/#{user._id}/roles") Editar Roles
+								//each rol,k in user.rol
+									if (rol.nombre == "Waiter")
+										if rol.value 
+											td
+												a(href="/admins/users/edit/#{user._id}/asignaralocal") Asignar a local
+										else 
+											td

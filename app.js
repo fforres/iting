@@ -12,6 +12,7 @@ var MongoStore = require('connect-mongo')(session);
 var compress = require('compression');
 var roleHelper = require('./helpers/roleHelper');
 
+
 // SETTINGS
 var settings = require('./settings/settings');
 
@@ -21,6 +22,9 @@ var admin = require('./routes/admin');
 var users = require('./routes/users');
 var tests = require('./routes/tests');
 var api = require('./routes/api');
+
+global.API_URL = "http://fforres.koding.io:3002/api";
+global.APP_URL = "http://fforres.koding.io:3001";
 
 var app = express();
 
@@ -87,7 +91,7 @@ if (app.get('env') === 'development') {
 app.use(function(err, req, res, next) {
 	res.status(err.status || 500);
 	res.render('error', {
-		message: err.message,
+		message: "err.message",
 		error: {}
 	});
 });

@@ -11,6 +11,8 @@ block content
 					.restaurant(attr-numero='#{i}')
 						strong.nombre
 							h3 
-								a(href="/restaurant/#{restaurant._id}").url #{restaurant.nombre}
-						small #{restaurant.comuna}
-	
+								a(href="/restaurant/#{restaurant.id}").url #{restaurant.nombre}
+							h5
+								a(href="/comunas/#{restaurant.comuna.id}").url #{restaurant.comuna.nombre}
+							h5 
+								a(href="/comunas/#{restaurant.categoria.id}").url #{restaurant.categoria.nombre}

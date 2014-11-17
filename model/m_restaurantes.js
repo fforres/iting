@@ -1,4 +1,5 @@
 var mongojs = require("mongojs");
+var _REQUEST = require("request");
 var db = mongojs("localhost/iting");
 var _ = require("underscore");
 var async = require("async");
@@ -495,7 +496,47 @@ function GetRestaurantesByID(MongoId, callback) {
 }
 
 
+var SearchRestaurante = function(searchTerm,req,res){
+	var ob = {
+		include:["categoria","comuna"],
+		where:{
+			or: [
+				{
+					nombre:
+					{
+						like: searchTerm
+					}		
+				},
+				{
+					web:
+					{
+						like: searchTerm
+					}		
+				}
+			]
+		}
+	};
+	console.log(ob)
+	var stringOB = JSON.stringify(ob)
+	_REQUEST(
+    { method: 'GET'
+    , uri: global.API_URL + "/restaurantes?filter="+stringOB
+    }  , function (error, response, body) {
+		 
+	if(body){
+		console.log(JSON.parse(body))
+		res.render('searchResults', {
+			title: 'Itings',
+			busqueda: {},
+			rest: JSON.parse(body)
+		});
+	}
+	if(response && response.statusCode == 200){
+		}
+		
+    })
 
+}
 var _ShowRestaurantesBySearchTerm = function(searchTerm, req, res) {
 	var restaurantes = db.collection('restaurantes');
 	// it's an ObjectID
@@ -572,7 +613,7 @@ function GetTiposDeLocalesID(tiposdelocales, callback) {
 			}
 		});
 }
-
+ 
 exports.ShowCreateRestaurante = _ShowCreateRestaurante;
 exports.ShowEditRestaurante = _ShowEditRestaurante;
 exports.ShowEditRestaurantePhoto = _ShowEditRestaurantePhoto;
@@ -581,4 +622,5 @@ exports.ShowRestauranteListDeleted = _ShowRestauranteListDeleted;
 exports.ShowDeleteRestaurante = _ShowDeleteRestaurante;
 exports.ShowUnDeleteRestaurante = _ShowUnDeleteRestaurante;
 exports.RestauranteSearch = _ShowRestaurantesBySearchTerm;
+exports.Search = SearchRestaurante;
 exports.ShowPerfilRestaurante = _ShowPerfilRestaurante;

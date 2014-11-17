@@ -7,7 +7,6 @@ $(window)
 
 $(document)
 	.ready(function() {
-
 		var hash = window.location.hash;
 		switch (hash) {
 			case ("#login"):

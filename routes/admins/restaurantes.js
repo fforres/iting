@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var expressValidator = require('express-validator');
 var publics = require('./../../model/m_restaurantes.js');
+var Restaurante = require('./../../model/restaurante.js');
+var User = require('./../../model/user.js');
 var passport = require('passport');
 var users = require('./../../model/m_users.js');
 
@@ -42,7 +44,6 @@ router.use(function(req, res, next) {
 		req.sanitize("telefono")
 			.trim();
 	}
-
 	for (var i in req.validationErrors(true)) {
 		if (typeof(req.validationErrors(true)[i].value) != "undefined") {
 			req.flash('form', {
@@ -56,7 +57,8 @@ router.use(function(req, res, next) {
 
 router.route('/')
 	.get(function(req, res) {
-		publics.ShowRestauranteList(req, res);
+		//publics.ShowRestauranteList(req, res);
+		Restaurante.Restaurantes(req,res);
 	});
 
 router.route('/deleted')
@@ -77,12 +79,9 @@ router.route("/new")
 
 router.route("/edit")
 	.get(function(req, res) {
-		publics.ShowEditRestaurante(req, res);
-	})
-	.post(function(req, res) {
-
-		publics.CreateRestaurante(req, res);
+		res.redirect("/admins/restaurantes")
 	});
+
 
 router.route("/edit/:MongoId/photo")
 	.get(function(req, res) {
@@ -92,23 +91,19 @@ router.route("/edit/:MongoId/photo")
 		if (req.validationErrors()) {
 			publics.ShowEditRestaurantePhoto(req, res);
 		} else {
-			console.log(2);
 			publics.EditRestaurantePhoto(req, res);
 		}
 	});
 
 router.route("/edit/:MongoId")
 	.get(function(req, res) {
-		publics.ShowEditRestaurante(req, res);
+		//publics.ShowEditRestaurante(req, res);
+		Restaurante.RestauranteById(req, res,req.params.MongoId);
+
 	})
 	.post(function(req, res) {
-		if (req.validationErrors()) {
-			console.log(req.validationErrors());
-			publics.ShowEditRestaurante(req, res);
-		} else {
-			console.log(2);
-			publics.EditRestaurante(req, res);
-		}
+		Restaurante.Update_RestauranteById(req, res,req.params.MongoId);
+		//publics.EditRestaurante
 	});
 
 

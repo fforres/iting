@@ -5,7 +5,6 @@ body{
 }
 .content {
 	padding-top: 50px;
-	height: 100%;
 }
 .index_carrousel{
 	position: absolute;
@@ -15,8 +14,6 @@ body{
 
 .index.fullheight{
 	height: 100%;
-	padding-left: 10%;
-	padding-right: 10%;
 }
 .fullheight{
 	height: 90%;
@@ -72,9 +69,9 @@ Sección Busqueda
 }
 
 #Busqueda .bigsearch-icon{
-	font-size: 26px;
-	padding-top: 7px;
-	padding-bottom: 7px;
+	font-size: 24px;
+	padding-top: 8px;
+	padding-bottom: 8px;
 	margin-left: 1px;
 	margin-right: 1px;
 }

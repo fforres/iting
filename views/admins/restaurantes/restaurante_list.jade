@@ -7,28 +7,29 @@ block content
 				.col-md-11
 					a(href="/admins/restaurantes/new").btn.btn-success Nuevo Restaurant 
 						i.fa.fa-home.fa-fw
-				.table-responsive
-					table.table.table-condensed
-						thead
-							tr
-								th #
-								th Nombre
-								th Url
-								th Editar
-								th Borrar
-
-						tbody
-							each restaurant,i in restaurantes
+				.col-md-11 
+					.table-responsive
+						table.table.table-condensed
+							thead
 								tr
-									td #{i+1}
-									td
-										strong #{restaurant.nombre}
-									td
-										a(href="#{restaurant.web}") #{restaurant.web}
-									td
-										a(href="/admins/restaurantes/edit/#{restaurant._id}") 
-											i.fa.fa-edit.fa-fw 
-									td
-										a(href="/admins/restaurantes/delete/#{restaurant._id}") 
-											i.fa.fa-trash-o.fa-fw 
-										
+									th #
+									th Nombre
+									th Url
+									th Editar
+									th Borrar
+	
+							tbody
+								each restaurant,i in restaurantes
+									tr
+										td #{i+1}
+										td
+											strong #{restaurant.nombre}
+										td
+											a(href="#{restaurant.web}") #{restaurant.web}
+										td
+											a(href="/admins/restaurantes/edit/#{restaurant.id}") 
+												i.fa.fa-edit.fa-fw 
+										td
+											a(href="/admins/restaurantes/delete/#{restaurant.id}") 
+												i.fa.fa-trash-o.fa-fw 
+											

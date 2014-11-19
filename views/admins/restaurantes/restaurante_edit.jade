@@ -4,45 +4,45 @@ block content
 	.row.initial
 		.col-xs-10.col-sm-10.col-centered
 			include ../../snipets/errors
-			h1.col-md-12 Editar Restaurant: #{restaurantes.nombre}
+			h1.col-md-12 Editar Restaurant: #{restaurant.nombre}
 			form.form-horizontal(name="loginForm" method="post" action="" )
 
 				.form-group
 					label(for="nombre").control-label.col-md-3 Nombre del Local
 					.col-md-8
-						input.form-control(type="text" value="#{restaurantes.nombre}" name="nombre" id="nombre" placeholder="Nombre")
+						input.form-control(type="text" value="#{restaurant.nombre}" name="nombre" id="nombre" placeholder="Nombre")
 				
 				.form-group
 					label(for="direccion").control-label.col-md-3 Dirección
 					.col-md-8
-						input.form-control(type="text" value="#{restaurantes.direccion}"  name="direccion" id="direccion" placeholder="Dirección")
+						input.form-control(type="text" value="#{restaurant.direccion}"  name="direccion" id="direccion" placeholder="Dirección")
 				
 				.form-group
 					label(for="comuna").control-label.col-md-3 Comuna
 					.col-md-8
-						select.form-control(name="comuna" id="comuna" placeholder="Comuna")
-							each comuna in comunas
-								option(value="#{comuna._id}") #{comuna.nombre}
+						select.form-control(name="comuna" id="comuna" placeholder="Comuna" data-preselected="#{comuna.id}" data-fetch="comunas" disabled)
+							option(value="#{comuna.id}") #{comuna.nombre}
 				
 				.form-group
-					label(for="tipo").control-label.col-md-3 Tipo de Local
+					label(for="categoria").control-label.col-md-3 Tipo de Local
 					.col-md-8
-						input.form-control(type="text" value="#{restaurantes.tipo}"  name="tipo" id="tipo" placeholder="Tipo")
-				
+						select.form-control(name="categoria" id="categoria" placeholder="Categoria" data-preselected="#{categoria.id}" data-fetch="categorias" disabled)
+							option(value="#{categoria.id}") #{categoria.nombre}
+
 				.form-group
 					label(for="web").control-label.col-md-3 Web
 					.col-md-8
-						input.form-control(type="url" value="#{restaurantes.web}"  name="web" id="web" placeholder="Web")
+						input.form-control(type="url" value="#{restaurant.web}"  name="web" id="web" placeholder="Web")
 				
 				.form-group
 					label(for="email").control-label.col-md-3 Mail de Contacto
 					.col-md-8
-						input.form-control(type="email" value="#{restaurantes.email}"  name="email" id="email" placeholder="Mail")
+						input.form-control(type="email" value="#{restaurant.email}"  name="email" id="email" placeholder="Mail")
 				
 				.form-group
 					label(for="telefono").control-label.col-md-3 Teléfono
 					.col-md-8
-						input.form-control(type="tel" value="#{restaurantes.telefono}"  name="telefono" id="telefono" placeholder="Teléfono")
+						input.form-control(type="tel" value="#{restaurant.telefono}"  name="telefono" id="telefono" placeholder="Teléfono")
 				
 				.form-group
 					.col-md-8

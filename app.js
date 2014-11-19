@@ -7,7 +7,6 @@ var session = require('express-session');
 var expressValidator = require('express-validator');
 var expressFlash = require('express-flash');
 var express = require('express');
-var passport = require('passport');
 var MongoStore = require('connect-mongo')(session);
 var compress = require('compression');
 var roleHelper = require('./helpers/roleHelper');
@@ -31,7 +30,6 @@ var app = express();
 
 // passport Config
 
-require('./settings/passport')(app, passport);
 // view engine setup
 app
 	.set('views', path.join(__dirname, 'views'))
@@ -40,19 +38,21 @@ app
 	.use(logger('dev'))
 	.use(bodyParser.json())
 	.use(bodyParser.urlencoded())
+	.use(expressFlash())
 	.use(expressValidator())
 	.use(compress())
-	.use(expressFlash())
-	.use(cookieParser())
+	.use(cookieParser()) 
 	.use(session({
 		secret: settings.CookieSecret,
 		store: new MongoStore({
 			db: settings.Mongo.Db,
+			host:settings.Mongo.Host,
+			port:settings.Mongo.Port,
+			username:settings.Mongo.User,
+			password:settings.Mongo.Pass,
 			collection: settings.Mongo.SessionCollection
 		})
 	}))
-	.use(passport.initialize())
-	.use(passport.session())
 	.use(express.static(path.join(__dirname, 'public')))
 	.use(function(req, res, next) {
 		roleHelper.setTopBarLoggedIn(req, res, next, app);

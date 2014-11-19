@@ -1,12 +1,12 @@
-var _ = require("underscore");
 
 function _Rol(req, res, next, app) {
-	if (req.user && req.user.rol) {
-		var admin = _.find(req.user.rol, function(item) {
-			return item.nombre === "Admin";
-		});
+	if (req.session.user && req.session.user.rol) {
 		app.locals.rol = {};
-		app.locals.rol.isAdmin = admin.value;
+		if(req.session.user.rol.name == "admin"){
+			app.locals.rol.isAdmin = true;	
+		}else{
+			app.locals.rol.isAdmin = false;
+		}
 	}
 	next();
 }
@@ -16,15 +16,39 @@ function _loggedIn(req, res, next, app) {
 		req.utils = {};
 	}
 	req.utils.url = req.originalUrl;
-	if (req.user) {
-		res.locals.user = req.user;
-		res.locals.isLoggedIn = true;
+	if (req.session.user) {
+		res.locals.currentUser = req.session.user;
 	} else {
-		res.locals.user = false;
-		res.locals.isLoggedIn = false;
+		res.locals.currentUser = false;
 	}
 	next();
 }
 
+function _isAuthenticated(req){
+	if(req.session && req.session.user && req.session.user.logged ){
+		return true;
+	}else{
+		return false;	
+	}
+}
+
+function _isAdmin(req){
+	if(req.session && req.session.user && req.session.user.logged && req.session.user.rol.name=="admin"){
+		return true;
+	}else{
+		return false;	
+	}
+}
+function _isNotAdmin(req){
+	if(req.session && req.session.user && req.session.user.logged && req.session.user.rol.name=="admin"){
+		return false;
+	}else{
+		return true;	
+	}
+}
+
 exports.setTopBarRol = _Rol;
 exports.setTopBarLoggedIn = _loggedIn;
+exports.isAuthenticated = _isAuthenticated;
+exports.isAdmin = _isAdmin;
+exports.isNotAdmin = _isNotAdmin;

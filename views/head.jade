@@ -24,11 +24,11 @@ nav(class="navbar navbar-fixed-top navbar-inverse" role="navigation")
 					a(href="#Contactanos").scroll-link Contáctanos
 
 			ul.nav.navbar-nav.navbar-right
-				if (isLoggedIn == false)
+				if (currentUser == false)
 					li
 						a(href="#login" class="login" data-toggle="modal" data-target="#loginModal") Ingresa
 				else
-					if locals.rol.isAdmin
+					if locals.rol
 						li
 							a(href="/admins/restaurantes") Administracion
 

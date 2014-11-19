@@ -1,11 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var expressValidator = require('express-validator');
 var _ = require('underscore');
 var users = require('./../model/m_users.js');
+var User = require('./../model/user.js');
 var restaurantes = require('./../model/m_restaurantes.js');
 var Restaurante = require('./../model/restaurante.js');
-var passport = require('passport');
+var roleHelper = require('./../helpers/roleHelper.js');
 // route middleware that will happen on every request
 
 
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
 
 router.route('/login')
 	.get(function(req, res) {
-		if (req.isAuthenticated()) {
+		if (roleHelper.isAuthenticated(req)) {
 			res.redirect('/')
 		} else {
 			res.render('users/users_login', {
@@ -31,23 +31,32 @@ router.route('/login')
 			})
 		}
 	})
-	.post(passport.authenticate('local', {
-		failureRedirect: '/login'
-	}), function(req, res) {
-		users.session(req, res);
+	.post(function(req,res){
+		User.Login(req,res)
 	})
 
 router.route('/register')
 	.get(function(req, res) {
 		users.ShowCreateUser(req, res);
+		if (roleHelper.isAuthenticated(req)) {
+			res.redirect('/')
+		} else {
+			res.render('users/users_login', {
+				title: 'Iting'
+			})
+		}
 	})
 	.post(function(req, res) {
-		users.CreateUser(req, res);
+		if (roleHelper.isAuthenticated(req)) {
+			res.redirect('/')
+		} else {
+			User.Create(req,res)
+		}
 	})
 
 router.route('/profile')
 	.get(function(req, res) {
-		users.ShowEditUser(req, res);
+		User.GetProfile(req,res);
 	})
 	.post(function(req, res) {
 		users.EditUser(req, res);
@@ -55,14 +64,15 @@ router.route('/profile')
 
 router.route('/logout')
 	.get(function(req, res) {
-		req.logOut();
-		res.redirect("/");
+		req.session.destroy(function(err) {
+			res.redirect("/");
+		})
 	});
 
 
 router.route("/restaurant/:MongoId")
 	.get(function(req, res) {
-		Restaurante.Restaurante(req, res);
+		Restaurante.RestauranteById(req, res);
 	});
 
 

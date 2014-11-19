@@ -79,7 +79,6 @@ exports.CreateUser = function(req, res) {
 function doCreateUser(docs, ob) {
 	var req = ob.req;
 	var res = ob.res;
-	console.log(docs);
 	var usuarios = db.collection('usuarios');
 	var salt = makeSalt();
 	usuarios.ensureIndex({

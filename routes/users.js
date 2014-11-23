@@ -64,9 +64,7 @@ router.route('/profile')
 
 router.route('/logout')
 	.get(function(req, res) {
-		req.session.destroy(function(err) {
-			res.redirect("/");
-		})
+		User.Logout(req,res);
 	});
 
 

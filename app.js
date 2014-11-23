@@ -21,6 +21,7 @@ var admin = require('./routes/admin');
 var users = require('./routes/users');
 var tests = require('./routes/tests');
 var api = require('./routes/api');
+var appRoute = require('./routes/app');
 
 global.API_URL = "http://fforres.koding.io:3002/api";
 global.APP_URL = "http://fforres.koding.io:3001";
@@ -63,6 +64,7 @@ app
 	.use('/admins/', admin)
 	.use('/api/', api)
 	.use('/tests/', tests)
+	.use('/app/', appRoute)
 	.use('/', users)
 	.use(function(req, res, next) {
 		var err = new Error('Not Found');

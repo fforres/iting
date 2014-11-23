@@ -16,22 +16,53 @@ nav(class="navbar navbar-fixed-top navbar-inverse" role="navigation")
 
 		div(class="collapse navbar-collapse navbar-ex1-collapse")
 			ul.nav.navbar-nav
-				li
-					a(href="#sobreNosotros").scroll-link Sobre Nosotros
-				li
-					a(href="#comoComprar").scroll-link Como Usar Iting
-				li
-					a(href="#Contactanos").scroll-link Contáctanos
+				if locals.loggedIn
+					if locals.rol.islocaladmin || locals.rol.isowner
+						li
+							a(data-toggle="dropdown" href="#").dropdown-toggle Administracion
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="/app/usuarios" data-fetch="restaurante") Usuarios
+								li
+									a(href="/" data-fetch="restaurante") Reportes
+						li
+							a(data-toggle="dropdown" href="#").dropdown-toggle Restaurantes
+								span.caret
+							ul.dropdown-menu
+								li
+									a(href="/") Perfil
+								li
+									a(href="/") Inventario
+								li
+									a(href="/") Menu
+						li
+							a(data-toggle="dropdown" href="#").dropdown-toggle Mesas
+								span.caret
+							ul.dropdown-menu
+								if locals.rol.isowner || locals.rol.isowner
+									li
+										a(href="/" data-fetch="restaurante") Unir Mesas
+								if locals.rol.ismesero
+									li
+										a(href="/").logout Ver Mesas
+				else
+					li
+						a(href="#sobreNosotros").scroll-link Sobre Nosotros
+					li
+						a(href="#comoComprar").scroll-link Como Usar Iting
+					li
+						a(href="#Contactanos").scroll-link Contáctanos
 
 			ul.nav.navbar-nav.navbar-right
 				if (currentUser == false)
 					li
 						a(href="#login" class="login" data-toggle="modal" data-target="#loginModal") Ingresa
 				else
-					if locals.rol
+					if locals.rol.isadmin
 						li
 							a(href="/admins/restaurantes") Administracion
-
+				
 					li
 						a(data-toggle="dropdown" href="#").dropdown-toggle 
 							i.fa.fa-cog Configuracion 

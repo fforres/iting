@@ -143,9 +143,70 @@ var UpdateRestauranteById = function(req,res,idRestaurante){
 	})
 }
 
-var getRestaurantes = function(req,res){
+
+var DeleteRestauranteById = function(req,res,idRestaurante){
 	var ob = {
-		include:["categoria","comuna"]
+		enabled: false
+	};
+	var stringOB = 	global.API_URL + "/restaurantes/"+idRestaurante;
+	
+	_REQUEST(
+    {
+    	method: 'PUT', 
+    	uri: stringOB,
+    	json:true,
+    	body:ob
+    }, 
+    function (error, response, body) {
+		if(body.error){
+			console.log(body.error)
+		}else{
+			req.flash('success', {
+				msg: "Restaurante Deshabilitado"
+			});
+			res.redirect("/admins/restaurantes")
+		}
+		if(response && response.statusCode == 200){
+		}
+			
+	})
+}
+
+
+var UndeleteRestauranteById = function(req,res,idRestaurante){
+	var ob = {
+		enabled: true
+	};
+	var stringOB = 	global.API_URL + "/restaurantes/"+idRestaurante;
+	
+	_REQUEST(
+    {
+    	method: 'PUT', 
+    	uri: stringOB,
+    	json:true,
+    	body:ob
+    }, 
+    function (error, response, body) {
+		if(body.error){
+			console.log(body.error)
+		}else{
+			req.flash('success', {
+				msg: "Restaurante Habilitado"
+			});
+			res.redirect("/admins/restaurantes/deleted")
+		}
+		if(response && response.statusCode == 200){
+		}
+			
+	})
+}
+
+var GetRestaurantes = function(req,res){
+	var ob = {
+		include:["categoria","comuna"],
+		where:{
+			enabled : true
+		}
 	};
 	var stringOB = 	global.API_URL + "/restaurantes?filter="+JSON.stringify(ob)
 	_REQUEST(
@@ -172,11 +233,48 @@ var getRestaurantes = function(req,res){
 			
 	})
 }
+
+var GetRestaurantesDeshabilitados = function(req,res){
+	var ob = {
+		include:["categoria","comuna"],
+		where:{
+			enabled : false
+		}
+	};
+	var stringOB = 	global.API_URL + "/restaurantes?filter="+JSON.stringify(ob)
+	_REQUEST(
+    {
+    	method: 'GET', 
+    	uri: stringOB,
+    	json: true
+    }, 
+    function (error, response, body) {
+    	console.log(body)
+		if(body.error){
+			req.flash('error', {
+				msg: body.error.message
+			});
+			res.redirect("/admins/restaurantes")
+		}else{
+			res.render('admins/restaurantes/restaurante_list_deleted', {
+				title: 'Iting',
+				restaurantes: body
+			});
+
+		}
+		if(response && response.statusCode == 200){
+		}
+			
+	})
+}
  
  
 exports.Search = SearchRestaurante;
 exports.Restaurante = SearchOneRestaurante;
 exports.RestauranteById = SearchRestauranteById;
-exports.Restaurantes = getRestaurantes;
+exports.Restaurantes = GetRestaurantes;
+exports.RestaurantesDeshabilitados = GetRestaurantesDeshabilitados;
 exports.Update_RestauranteById = UpdateRestauranteById;
+exports.Delete_RestauranteById = DeleteRestauranteById;
+exports.Undelete_RestauranteById = UndeleteRestauranteById;
 

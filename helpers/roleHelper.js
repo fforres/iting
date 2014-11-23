@@ -2,11 +2,38 @@
 function _Rol(req, res, next, app) {
 	if (req.session.user && req.session.user.rol) {
 		app.locals.rol = {};
-		if(req.session.user.rol.name == "admin"){
-			app.locals.rol.isAdmin = true;	
+		
+		
+		if(req.session.user.rol.isadmin){
+			app.locals.rol.isadmin = true;	
 		}else{
-			app.locals.rol.isAdmin = false;
+			app.locals.rol.isadmin = false;
 		}
+		
+		if(req.session.user.rol.ispublico){
+			app.locals.rol.ispublico = true;	
+		}else{
+			app.locals.rol.ispublico = false;
+		}
+		
+		if(req.session.user.rol.isowner){
+			app.locals.rol.isowner = true;	
+		}else{
+			app.locals.rol.isowner = false;
+		}
+		
+		if(req.session.user.rol.islocaladmin){
+			app.locals.rol.islocaladmin = true;	
+		}else{
+			app.locals.rol.islocaladmin = false;
+		}
+		
+		if(req.session.user.rol.ismesero){
+			app.locals.rol.ismesero = true;	
+		}else{
+			app.locals.rol.ismesero = false;
+		}
+		
 	}
 	next();
 }
@@ -18,8 +45,10 @@ function _loggedIn(req, res, next, app) {
 	req.utils.url = req.originalUrl;
 	if (req.session.user) {
 		res.locals.currentUser = req.session.user;
+		res.locals.loggedIn = true;
 	} else {
 		res.locals.currentUser = false;
+		res.locals.loggedIn = false;
 	}
 	next();
 }
@@ -33,17 +62,10 @@ function _isAuthenticated(req){
 }
 
 function _isAdmin(req){
-	if(req.session && req.session.user && req.session.user.logged && req.session.user.rol.name=="admin"){
-		return true;
+	if(req.session && req.session.user && req.session.user.rol && req.session.user.rol.isadmin){
+		return req.session.user.rol.isadmin
 	}else{
-		return false;	
-	}
-}
-function _isNotAdmin(req){
-	if(req.session && req.session.user && req.session.user.logged && req.session.user.rol.name=="admin"){
 		return false;
-	}else{
-		return true;	
 	}
 }
 
@@ -51,4 +73,3 @@ exports.setTopBarRol = _Rol;
 exports.setTopBarLoggedIn = _loggedIn;
 exports.isAuthenticated = _isAuthenticated;
 exports.isAdmin = _isAdmin;
-exports.isNotAdmin = _isNotAdmin;

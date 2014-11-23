@@ -1,0 +1,20 @@
+extends ../../layout
+
+block content
+	.row.initial
+		.col-xs-10.col-sm-10.col-centered
+			include ../../snipets/errors
+			form.form-horizontal(name="loginForm" method="post" action="")
+				h1.col-md-12 Editar Roles: #{user.nombre} - #{user.email}
+				hr
+				br
+				each rol,name in roles
+					.form-group
+						label(for="email").control-label.col-md-3 #{rol.nombre} - #{name}
+						if	rol.value
+							input.form-control(type="checkbox" name="#{rol.nombre}" id="Rol_#{rol.nombre}" checked)
+						else
+							input.form-control(type="checkbox" name="#{rol.nombre}" id="Rol_#{rol.nombre}")
+				.form-group
+					.col-md-8
+						button.btn.btn-default.pull-right(type="submit" value="Login") Guardar Roles

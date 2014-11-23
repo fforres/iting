@@ -17,6 +17,9 @@ html
 		link(rel='stylesheet', href='/stylesheets/full-slider.css')
 		link(rel='stylesheet', href='/stylesheets/style.css') 
 		link(rel='stylesheet', href='/stylesheets/chuckie.css')
+		if locals.loggedIn
+			link(rel='stylesheet', href='/stylesheets/logged.css')
+
 
 	body.cas
 		include head
@@ -31,5 +34,6 @@ html
 	script(type="text/javascript" src="/3rdparty/bootstrap/bootstrap.min.js")
 	script(type='text/javascript' src='/javascripts/jquery.easing.js')
 	script(type='text/javascript' src='/javascripts/script.js')
-	script(type='text/javascript' src='/javascripts/strongloop/config.js')
+	if locals.loggedIn
+		script(type='text/javascript' src='/javascripts/strongloop/config.js')
 

@@ -1,8 +1,4 @@
 var _REQUEST = require("request");
-var _ = require("underscore");
-var async = require("async");
-
-
 var SearchRestaurante = function(searchTerm,req,res){
 	var ob = {
 		include:["categoria","comuna"],
@@ -76,12 +72,18 @@ var SearchOneRestaurante = function(req,res){
 }
 
 var SearchRestauranteById = function(req,res,idRestaurante){
+	if(!idRestaurante){
+		idRestaurante = req.session.user.restaurant.id
+	}
 	var ob = {
 		include:["categoria","comuna"],
 		where:{
 			id:idRestaurante
 		}
 	};
+
+    
+    
 	var stringOB = 	global.API_URL + "/restaurantes?filter="+JSON.stringify(ob)
 	
 	_REQUEST(
@@ -92,7 +94,7 @@ var SearchRestauranteById = function(req,res,idRestaurante){
     }, 
     function (error, response, body) {
 		if(body[0]){
-			res.render('admins/restaurantes/restaurante_edit', {
+			res.render('app/restaurante/show', {
 				title: 'Iting',
 				comuna: body[0].comuna,
 				restaurant: body[0],
@@ -106,41 +108,81 @@ var SearchRestauranteById = function(req,res,idRestaurante){
 }
 
 
-
-var UpdateRestauranteById = function(req,res,idRestaurante){
-	console.log(req.body);
+var SearchRestauranteByIdEdit = function(req,res,idRestaurante){
+	if(!idRestaurante){
+		idRestaurante = req.session.user.restaurant.id
+	}
 	var ob = {
-		nombre: req.body.nombre,
-		direccion: req.body.direccion,
-		web: req.body.web,
-		email: req.body.email,
-		telefono: req.body.telefono,
-		categoriaId: req.body.categoria,
-		comunaId:req.body.comuna
-
+		include:["categoria","comuna"],
+		where:{
+			id:idRestaurante
+		}
 	};
-	var stringOB = 	global.API_URL + "/restaurantes/"+idRestaurante;
+
+    
+    
+	var stringOB = 	global.API_URL + "/restaurantes?filter="+JSON.stringify(ob)
 	
 	_REQUEST(
     {
-    	method: 'PUT', 
+    	method: 'GET', 
     	uri: stringOB,
-    	json:true,
-    	body:ob
+    	json:true
     }, 
     function (error, response, body) {
-		if(body.error){
-			console.log(body.error)
-		}else{
-			req.flash('success', {
-				msg: "Restaurante Actualizado"
+		if(body[0]){
+			res.render('app/restaurante/edit', {
+				title: 'Iting',
+				comuna: body[0].comuna,
+				restaurant: body[0],
+				categoria: body[0].categoria
 			});
-			res.redirect("/admins/restaurantes/")
 		}
 		if(response && response.statusCode == 200){
 		}
 			
 	})
+}
+
+
+var UpdateRestauranteById = function(req,res){
+	if(req.session.user && req.session.user.restaurant && req.session.user.restaurant.id){
+		idRestaurante = req.session.user.restaurant.id
+		console.log(idRestaurante);
+		var ob = {
+			nombre: req.body.nombre,
+			direccion: req.body.direccion,
+			web: req.body.web,
+			email: req.body.email,
+			telefono: req.body.telefono,
+			categoriaId: req.body.categoria,
+			comunaId:req.body.comuna
+	
+		};
+		var stringOB = 	global.API_URL + "/restaurantes/"+idRestaurante;
+		
+		_REQUEST(
+	    {
+	    	method: 'PUT', 
+	    	uri: stringOB,
+	    	json:true,
+	    	body:ob
+	    }, 
+	    function (error, response, body) {
+	    	console.log(body);
+			if(body.error){
+				console.log(body.error)
+			}else{
+				req.flash('success', {
+					msg: "Restaurante Actualizado"
+				});
+				res.redirect("/app/restaurante/")
+			}
+			if(response && response.statusCode == 200){
+			}
+				
+		})
+	}
 }
 
 
@@ -272,6 +314,7 @@ var GetRestaurantesDeshabilitados = function(req,res){
 exports.Search = SearchRestaurante;
 exports.Restaurante = SearchOneRestaurante;
 exports.RestauranteById = SearchRestauranteById;
+exports.RestauranteByIdForEdit = SearchRestauranteByIdEdit;
 exports.Restaurantes = GetRestaurantes;
 exports.RestaurantesDeshabilitados = GetRestaurantesDeshabilitados;
 exports.Update_RestauranteById = UpdateRestauranteById;

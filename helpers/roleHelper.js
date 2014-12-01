@@ -27,7 +27,6 @@ function _Rol(req, res, next, app) {
 		}else{
 			app.locals.rol.islocaladmin = false;
 		}
-		
 		if(req.session.user.rol.ismesero){
 			app.locals.rol.ismesero = true;	
 		}else{
@@ -49,6 +48,9 @@ function _loggedIn(req, res, next, app) {
 	} else {
 		res.locals.currentUser = false;
 		res.locals.loggedIn = false;
+	}
+	if(req.session.user && req.session.user.restaurant && req.session.user.restaurant.id){
+		res.locals.idRestaurant = req.session.user.restaurant.id;
 	}
 	next();
 }

@@ -1,17 +1,20 @@
 #userslist .user{
 	padding-top:10px;
-	padding-bottom:10px;
+	padding-bottom: 25px; 
 	margin-top:10px;
 	margin-bottom:10px;
+	border-bottom:rgb(151, 151, 151) 1px solid;
 	
 }
+
 #userslist .info .data{
 	display:inline-block !important;
 	font-size:24px;
 }
 
-#userslist .info .data span{
-	display:block !important;
+#userslist .info .data p{
+	word-wrap:break-word;
+
 }
 
 #userslist .info .acciones{
@@ -20,6 +23,81 @@
 	font-size:24px;
 }
 
-#userslist .info .roles{
+#userslist .rolewrapper{
 	display:none;
+}
+#userslist .roles label.checkbox{
+	font-size: 1.3em;
+	padding-bottom: 10px;
+}
+
+
+#inventario{}
+
+#inventario .agregar .searchbox{
+    margin-bottom:0;
+}
+#inventario .agregar .searchcontainer{
+    display:none;
+    height: 200px;
+    overflow-y: scroll;
+    background: rgb(255, 246, 230);
+}
+#inventario .agregar .searchcontainer .search{
+}
+
+#inventario .agregar .searchcontainer .search .searchresult{
+    padding:0px;
+    border-bottom: black solid 1px;
+}
+#inventario .agregar .searchcontainer .search .searchresult div{
+    padding:0px;
+}
+
+#inventario .agregar .searchcontainer .search .searchresult p{
+    padding-left:5px;
+}
+
+
+#inventario .agregados .item{
+    display:none;
+    padding-bottom: 10px;
+    border-bottom: white solid 2px;
+}
+#inventario .agregados .item:not(:last-child){
+    display:none;
+    padding-bottom: 10px;
+    border-bottom: none;
+}
+
+#inventario .agregados .item .movimientos{
+    display:none;
+    padding:0;
+}
+#inventario .agregados .item .movimientos .movimiento{
+    padding:0;
+    padding-top: 15px;
+    margin-bottom: 7px;
+    padding-bottom: 7px;
+}
+#inventario .agregados .item .movimientos .movimiento:not(:first-child){
+    border-top: white solid 1px;
+    padding-top: 10px;
+}
+#inventario .agregados .item .movimientos .movimiento .nombre{
+}
+#inventario .agregados .item .movimientos .movimiento .valor{
+    padding:0;
+}
+#inventario .agregados .item .movimientos .movimiento.tienevalordeunidad{
+    padding-bottom: 15px;
+    padding-left:10px;
+    padding-top: 2px;
+    margin-top: 2px;
+    border-top: none;
+
+}
+
+#inventario .acciones .crear{
+    margin-top:18px;
 }

@@ -18,7 +18,7 @@ router.use(function(req, res, next) {
 router.route('/')
 	.get(function(req, res) {
 		//publics.ShowRestauranteList(req, res);
-		Restaurante.Restaurantes(req,res);
+		Restaurante.RestauranteById(req, res);(req,res);
 	});
 
 router.route('/deleted')
@@ -40,7 +40,13 @@ router.route("/new")
 
 router.route("/edit")
 	.get(function(req, res) {
-		res.redirect("/admins/restaurantes")
+		//publics.ShowEditRestaurante(req, res);
+		Restaurante.RestauranteByIdForEdit(req, res,req.params.MongoId);
+
+	})
+	.post(function(req, res) {
+		Restaurante.Update_RestauranteById(req, res);
+		//publics.EditRestaurante
 	});
 
 

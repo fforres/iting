@@ -1,9 +1,4 @@
-var async = require("async");
-var crypto = require('crypto');
 var _REQUEST = require("request");
-var _ = require('underscore');
-
- 
 var createUser = function(req, res) {
 	ob = {
 		"username": req.body.username,
@@ -131,6 +126,8 @@ var getUserRestaurant = function(req,res,user,rol){
 		}
 	};
 	var stringOB2 = global.API_URL + "/usuarios_restaurantes?filter="+JSON.stringify(ob2)
+	console.log(ob2)
+	console.log(stringOB2)
 	_REQUEST(
     { 
     	method: 'GET', 
@@ -249,7 +246,6 @@ var getProfile = function(req,res){
 
 var getUsersWithRolesPorRestaurant = function(req,res,cb){
 	var sess = req.session;
-	console.log(sess.user)
 	var restaurantId = sess.user.restaurant.id;
 	if(restaurantId){
 		var stringOB = global.API_URL + "/restaurantes/"+restaurantId+"/usuarios";
@@ -296,9 +292,6 @@ var getUsersWithRolesPorRestaurant = function(req,res,cb){
 										});
 										res.redirect("/")
 									}else{
-										
-										console.log(body.length)
-										console.log("body")
 										res.render('app/users/users_list', {
 											title: 'Iting',
 											users:body

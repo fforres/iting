@@ -6,6 +6,8 @@ var roleHelper = require('./../helpers/roleHelper.js');
 var routeRestaurantes   = require('./../routes/app/restaurantes');
 var routeUsers  	 	= require('./../routes/app/users');
 var routeMesas  	 	= require('./../routes/app/mesas');
+var routeItems  	 	= require('./../routes/app/items');
+var routeInventario  	 	= require('./../routes/app/inventario');
 
 
 /* GET users listing. */
@@ -17,9 +19,11 @@ router.use(function(req,res,next){
 	next()
 });
 //req.session.user.logged
-router.use('/restaurantes',routeRestaurantes);
+router.use('/restaurante',routeRestaurantes);
 router.use('/usuarios',routeUsers);
 router.use('/mesas',routeMesas);
+router.use('/items',routeItems);
+router.use('/inventario',routeInventario);
 router.route('/*')
 	.get(function(req, res) {
 		//publics.ShowRestauranteList(req, res);

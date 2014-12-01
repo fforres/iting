@@ -1,10 +1,3 @@
-$(window)
-	.konami({
-		cheat: function() {
-			doKonami()
-		}
-	});
-
 $(document)
 	.ready(function() {
 		var hash = window.location.hash;
@@ -12,8 +5,6 @@ $(document)
 			case ("#login"):
 				$('#loginModal')
 					.modal("show");
-			case ("#konamicode"):
-				doKonami();
 		}
 
 		$('.carousel')
@@ -58,32 +49,6 @@ $(document)
 	});
 
 
-function doKonami() {
-	console.log("CHEATCODE!");
-	$("body")
-		.append("<img id='nyan' src='images/nyan.gif' style='display:none;z-index:1000;'>");
-	$.getScript("/javascripts/howler.min.js", function(e) {
-		var sound = new Howl({
-			urls: ['/audio/konami/o_nyan.mp3'],
-			loop: true,
-			autoplay: true,
-			onplay: function() {
-				$("#nyan")
-					.show();
-				$(document)
-					.mousemove(function(e) {
-						$('#nyan')
-							.offset({
-								left: e.pageX + 1,
-								top: e.pageY + 1
-							});
-					});
-			}
-		})
-
-
-	})
-}
 
 scrollToID = function(id, speed) {
 	id = "#" + id;
@@ -104,3 +69,7 @@ scrollToID = function(id, speed) {
 		mainNav.collapse("hide");
 	}
 };
+
+cerrarDiv = function($containerParaCerrar,velocidad){
+    
+}

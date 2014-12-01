@@ -1,0 +1,31 @@
+extends ../../layout
+
+block content
+	.row.initial 
+		.col-xs-10.col-sm-10.col-centered
+				include ../../snipets/errors
+				h1.col-md-12 Nuevo Item
+				form.form-horizontal(name="loginForm" method="post" action="")
+					.form-group
+						label(for="nombre").control-label.col-md-3 Nombre
+						.col-md-8
+							input.form-control(type="text" name="nombre" id="nombre" placeholder="Ingresa un Nombre")
+
+					.form-group
+						label(for="descripcion").control-label.col-md-3 Descripción
+						.col-md-8
+							textarea.form-control(name="descripcion" id="descripcion" placeholder="Ingresa una descripción")
+
+					.form-group
+						label(for="tipo").control-label.col-md-3 Categoría de Item
+						.col-md-8
+							select.form-control(name="categoriaitem" id="categoriasitems" placeholder="categoriasitems" data-preselected="" data-fetch="categoriasitems" data-restaurant="#{locals.idRestaurant}" disabled)
+
+					.form-group
+						label(for="unidaddemedida").control-label.col-md-3 Unida de Medida
+						.col-md-8
+							input.form-control(type="text" name="unidaddemedida" id="unidaddemedida" placeholder="Unidad de medida (KG, MTS, CC)")
+							
+					.form-group
+						.col-md-8
+							button.btn.btn-default.pull-right(type="submit" value="Login") Crear Restaurante

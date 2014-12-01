@@ -19,7 +19,7 @@ router.get('/', function(req, res) {
 		});
 	}
 
-});
+}); 
 
 router.route('/login')
 	.get(function(req, res) {
@@ -37,11 +37,10 @@ router.route('/login')
 
 router.route('/register')
 	.get(function(req, res) {
-		users.ShowCreateUser(req, res);
 		if (roleHelper.isAuthenticated(req)) {
 			res.redirect('/')
 		} else {
-			res.render('users/users_login', {
+			res.render('users/users_new', {
 				title: 'Iting'
 			})
 		}

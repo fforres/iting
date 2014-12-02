@@ -24,6 +24,11 @@ block content
 						label(for="unidaddemedida").control-label.col-md-3 Unida de Medida
 						.col-md-8
 							input.form-control(type="text" name="unidaddemedida" id="unidaddemedida" value="#{item.unidaddemedida}" placeholder="Unidad de medida (KG, MTS, CC)")
+					
+					.form-group
+						label(for="unidaddemedida").control-label.col-md-3 Cantidad Actual de Unidades ( #{item.unidaddemedida} )
+						.col-md-8
+							input.form-control(type="text" disabled value="#{item.cantidadactual}")
 							
 					.form-group
 						.col-md-8

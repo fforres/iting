@@ -94,6 +94,17 @@ $("#inventario .acciones a.crear ").on("click", function(e) {
 	}
 
 	function saveInventario(inventario) {
+	    
+	    var cantidadDeQueries = 0;
+        var cantidadDeQueriesBien = 0;	    
+        var cantidadDeQueriesMal = 0;
+        
+	    $.each(inventario, function(k, v) {
+        $.each(v, function(k2, v2) {
+            cantidadDeQueries++;
+        })
+        })
+        
 		var lafecha = $('#inventario #datepicker').datepicker().datepicker('getDate')
 		var obHistorialConsulta = 
 		{
@@ -152,7 +163,12 @@ $("#inventario .acciones a.crear ").on("click", function(e) {
                                                 type: "POST",
                                                 data: ob,
                                                 success: function(data) {
-                                                    console.log(data)
+                                                    cantidadDeQueriesBien++
+                                                },
+                                                done: function(data){
+                                                    if(cantidadDeQueriesBien+cantidadDeQueriesMal == cantidadDeQueries){
+                                                        alert("Guardado Finalizado");
+                                                    }
                                                 }
                                             })
                                         })
@@ -219,7 +235,9 @@ function startSearch($cont) {
 						}
 					}]
 				}]
-			}
+			},
+			order : 'nombre ASC'
+
 		}
 		var laurl = API_URL + "/items?filter=" + JSON.stringify(ob);
 		var xhr = $.ajax({
@@ -272,13 +290,11 @@ function startSearch($cont) {
     				var elNombre = $(this).data("nombre");
     				var elItemId = $(this).data("itemid");
     				var laUnidadDeMedida = $(this).data("unidaddemedida");
-    				var laurl = API_URL + '/tiposmovimientos?filter={"order": "nombre DESC"}';
+    				var laurl = API_URL + '/tiposmovimientos?filter={"order": "orden ASC"}';
     				$.ajax({
     					url: laurl,
     					type: "GET",
     					success : function(data) {
-    					    console.log(data)
-    					    console.log(data)
         					var html = "";
         					html += "<div class='col-xs-12 item' data-itemid='" + elItemId + "' >";
         					html += "<h3>" + elNombre + " (" + laUnidadDeMedida + ")<i class='fa fa-fw fa-caret-down pull-right'></i></h3>";
@@ -286,7 +302,7 @@ function startSearch($cont) {
         					$.each(data, function(k, v) {
         						html += "<div class='col-xs-12 row-xs-height movimiento form-group' data-idmovimiento='" + v.id + "' >";
         						html += "<div class='col-xs-8 col-xs-height col-middle nombre'>";
-        						html += "<label class='control-label'>" + v.nombre + "</label>";
+        						html += "<label class='control-label'>" + capitalize(v.nombre) + "</label>";
         						html += "</div>";
         						html += "<div class='col-xs-4 col-xs-height col-middle valor'>";
         						html += "<input type='text' class='form-control'>";

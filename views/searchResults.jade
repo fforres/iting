@@ -1,18 +1,25 @@
 extends layout
 
 block content
-	include snipets/errors
-	
-	.row.fullheight.index
-		.col-xs-12.col-sm-12.fullheight
-			h1 Restaurantes
-			.restaurantes-container.col-md-9
-				each restaurant,i in rest
-					.restaurant(attr-numero='#{i}')
-						strong.nombre
-							h3 
-								a(href="/restaurant/#{restaurant.id}").url #{restaurant.nombre}
-							h5
-								a(href="/comunas/#{restaurant.comuna.id}").url #{restaurant.comuna.nombre}
-							h5 
-								a(href="/comunas/#{restaurant.categoria.id}").url #{restaurant.categoria.nombre}
+    include snipets/errors
+    .row.fullheight.index
+        .col-xs-12.col-sm-12
+            h1 Restaurantes
+            //h4 ( #{searchTerm} ) 
+            if hayRespuestas
+               .restaurantes-container.col-xs-12
+                    each restaurant,i in rest
+                        .restaurant(attr-numero='#{i}')
+                            strong.nombre
+                           .restaurantes-container.col-xs-12
+                                h2 
+                                    a(href="/restaurant/#{restaurant.id}").url #{restaurant.nombre}
+                           .restaurantes-container.col-xs-12
+                                h4 Categoría : 
+                                    a(href="/?categoria-term=#{restaurant.categoria.id}").url #{restaurant.categoria.nombre}
+                                h4 En: 
+                                    a(href="/?comuna-term=#{restaurant.comuna.id}").url #{restaurant.comuna.nombre}
+            else
+                h3 Lo sentimos
+                    i.fa.fa-fw.fa-frown-o
+                p No hemos encontrado ningún local con tus parámetros de búsqueda

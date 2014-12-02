@@ -35,44 +35,46 @@ nav(class="navbar navbar-fixed-top navbar-inverse" role="navigation")
 								li.divider
 								li
 									a(href="/app/inventario") Hacer Inventario
+					if locals.rol.islocaladmin || locals.rol.isowner || locals.rol.ismesero
+						li
+							a(data-toggle="dropdown" href="#").dropdown-toggle Platos
+								span.caret
+							ul.dropdown-menu
+								if locals.rol.islocaladmin || locals.rol.isowner
+									li
+										a(href="/app/restaurante/inventario") Crear Plato
 								
-					li
-						a(data-toggle="dropdown" href="#").dropdown-toggle Platos
-							span.caret
-						ul.dropdown-menu
-							if locals.rol.islocaladmin || locals.rol.isowner
 								li
-									a(href="/app/restaurante/inventario") Crear Plato
-							li
-								a(href="/app/restaurante/inventario") Buscar Plato
-							li.divider
-							if locals.rol.islocaladmin || locals.rol.isowner
+									a(href="/app/restaurante/inventario") Buscar Plato
+								li.divider
+								if locals.rol.islocaladmin || locals.rol.isowner
+									li
+										a(href="/") Editar Plato
+					if locals.rol.islocaladmin || locals.rol.isowner || locals.rol.ismesero					
+						li
+							a(data-toggle="dropdown" href="#").dropdown-toggle Mesas
+								span.caret
+							ul.dropdown-menu
+								if locals.rol.isowner || locals.rol.isowner
+									li
+										a(href="/" data-fetch="restaurante") Unir Mesas
+									li
+										a(href="/" data-fetch="restaurante") Crear Nueva Mesas
 								li
-									a(href="/") Editar Plato
-					li
-						a(data-toggle="dropdown" href="#").dropdown-toggle Mesas
-							span.caret
-						ul.dropdown-menu
-							if locals.rol.isowner || locals.rol.isowner
+									a(href="/" data-fetch="restaurante") Ver Mesas
+					if locals.rol.islocaladmin || locals.rol.isowner || locals.rol.ismesero								
+						li
+							a(data-toggle="dropdown" href="#").dropdown-toggle Pedidos
+								span.caret
+							ul.dropdown-menu
 								li
-									a(href="/" data-fetch="restaurante") Unir Mesas
+									a(href="/" data-fetch="restaurante") Ver Pedido
 								li
-									a(href="/" data-fetch="restaurante") Crear Nueva Mesas
-							li
-								a(href="/" data-fetch="restaurante") Ver Mesas
-							
-					li
-						a(data-toggle="dropdown" href="#").dropdown-toggle Pedidos
-							span.caret
-						ul.dropdown-menu
-							li
-								a(href="/" data-fetch="restaurante") Ver Pedido
-							li
-								a(href="/" data-fetch="restaurante") Crear Pedido
-							li
-								a(href="/" data-fetch="restaurante") Editar Pedido
-							li
-								a(href="/" data-fetch="restaurante") Pagar Pedido
+									a(href="/" data-fetch="restaurante") Crear Pedido
+								li
+									a(href="/" data-fetch="restaurante") Editar Pedido
+								li
+									a(href="/" data-fetch="restaurante") Pagar Pedido
 							
 				else
 					li

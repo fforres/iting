@@ -5,8 +5,9 @@ block content
         .col-xs-11.col-sm-11.col-centered
             h3 Inventario
         .col-xs-11.col-sm-11.col-centered.datepicker
-            p Selecciona una fecha para este Inventario
-            input#datepicker(type='text')
+            .form-group.searchbox
+                p Selecciona una fecha para este Inventario (DD/MM/YY)
+                input#datepicker.form-control(type='text')
         .col-xs-11.col-sm-11.col-centered.agregar
             .form-group.searchbox
                 p Comienza a escribir para agregar un Item

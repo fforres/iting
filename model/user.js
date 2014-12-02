@@ -171,7 +171,6 @@ var registerUserSession = function(req,res,user,roles,restaurant)
 			id: restaurant[0].restaurante.id,
 		}
 	}
-	console.log(ob)
 	sess.user = ob;
 	req.flash('success', {
 		msg: 'Estas logueado'

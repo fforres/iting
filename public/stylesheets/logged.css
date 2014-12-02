@@ -41,7 +41,7 @@
     display:none;
     height: 200px;
     overflow-y: scroll;
-    background: rgb(255, 246, 230);
+    background: rgb(225, 225, 225);
 }
 #inventario .agregar .searchcontainer .search{
 }

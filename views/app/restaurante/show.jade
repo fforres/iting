@@ -6,8 +6,9 @@ block content
 
 			h1 
 				a(href="#{restaurant.web}") #{restaurant.nombre}
-			if locals.rol.islocaladmin || locals.rol.isowner
-				a.editarrestaurante.btn.btn-success(href="/app/restaurante/edit") Editar Restaurant
+			if locals.rol && locals.loggedIn
+				if locals.rol.islocaladmin || locals.rol.isowner
+					a.editarrestaurante.btn.btn-success(href="/app/restaurante/edit") Editar Restaurant
 			.col-xs-12
 				.col-xs-4
 					h3 Teléfono

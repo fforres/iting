@@ -13,6 +13,10 @@ router.get('/', function(req, res) {
 	var a = users.currentUserRole.isAdmin(req);
 	if (req.query && req.query["srch-term"]) {
 		Restaurante.Search(req.query["srch-term"], req, res);
+	} else if (req.query && req.query["comuna-term"]) {
+		Restaurante.SearchByComuna(req.query["comuna-term"], req, res);
+	} else if (req.query && req.query["categoria-term"]) {
+		Restaurante.SearchByCategoria(req.query["categoria-term"], req, res);
 	} else {
 		res.render('index', {
 			title: 'Iting'
@@ -69,7 +73,7 @@ router.route('/logout')
 
 router.route("/restaurant/:MongoId")
 	.get(function(req, res) {
-		Restaurante.RestauranteById(req, res);
+		Restaurante.RestauranteById(req, res, req.params.MongoId);
 	});
 
 

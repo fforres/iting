@@ -172,7 +172,12 @@ $(document).on("ready",function(e){
 	    $.getScript( "/javascripts/strongloop/inventario.js", function( data, textStatus, jqxhr ) {
           console.log( "Load was performed." );
         });
-
+	}
+	
+	if($("#inventario.calendario").length>0){
+	    $.getScript( "/javascripts/strongloop/inventario.js", function( data, textStatus, jqxhr ) {
+          console.log( "Load was performed." );
+        });
 	}
 	
 	if($("#reportes.flujodiarioitems").length>0){

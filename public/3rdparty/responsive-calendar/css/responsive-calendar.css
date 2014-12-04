@@ -17,6 +17,8 @@
   font-size: 14px;
   width: 14.285714285714286%;
   text-align: center;
+  	transition: background-color 600ms linear ;
+
 }
 .responsive-calendar .day a {
   color: #000000;
@@ -31,6 +33,7 @@
 .responsive-calendar .day.header {
   border-bottom: 1px gray solid;
 }
+
 .responsive-calendar .day.active a {
   background-color: #1d86c8;
   color: #ffffff;
@@ -44,6 +47,7 @@
 }
 .responsive-calendar .day.active .not-current:hover {
   background-color: #bcdff5;
+
 }
 .responsive-calendar .day.not-current a {
   color: #ddd;

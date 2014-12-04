@@ -1,23 +1,24 @@
 extends ../../layout
 block content
 	.row.calendario#inventario
-		.col-xs-12.col-sm-9.col-centered#calendar
-			.responsive-calendar
-				.controls
-					a.pull-left(data-go='prev')
-						.btn.btn-primary Prev
-					h4
-						span(data-head-year='')
-						span(data-head-month='')
-					a.pull-right(data-go='next')
-						.btn.btn-primary Next
-				hr
-				.day-headers
-					.day.header Mon
-					.day.header Tue
-					.day.header Wed
-					.day.header Thu
-					.day.header Fri
-					.day.header Sat
-					.day.header Sun
-				.days(data-group='days')
+		#calendar
+			.container
+				.responsive-calendar
+					.controls
+						a.pull-left(data-go='prev')
+							.btn.btn-primary Prev
+						h4
+							span(data-head-year='')
+							span(data-head-month='')
+						a.pull-right(data-go='next')
+							.btn.btn-primary Next
+					hr
+					.day-headers
+						.day.header Mon
+						.day.header Tue
+						.day.header Wed
+						.day.header Thu
+						.day.header Fri
+						.day.header Sat
+						.day.header Sun
+					.days(data-group='days')

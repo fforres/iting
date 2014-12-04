@@ -170,13 +170,17 @@ $(document).on("ready",function(e){
 	
 	if($("#inventario").length>0){
 	    $.getScript( "/javascripts/strongloop/inventario.js", function( data, textStatus, jqxhr ) {
-          console.log( "Load was performed." );
+
         });
 	}
 	
 	if($("#inventario.calendario").length>0){
-	    $.getScript( "/javascripts/strongloop/inventario.js", function( data, textStatus, jqxhr ) {
-          console.log( "Load was performed." );
+	    $.getScript( "/3rdparty/responsive-calendar/js/responsive-calendar.min.js", function( data, textStatus, jqxhr ) {
+	    loadCSS( "/3rdparty/responsive-calendar/css/responsive-calendar.css", function( data, textStatus, jqxhr ) {
+	    $.getScript( "/javascripts/strongloop/inventarioCalendario.js", function( data, textStatus, jqxhr ) {
+			
+        });
+        });
         });
 	}
 	
@@ -184,7 +188,7 @@ $(document).on("ready",function(e){
 	    $.getScript( "/javascripts/strongloop/reportes.js", function( data, textStatus, jqxhr ) {
 	    $.getScript( "/3rdparty/moment/moment.js", function( data, textStatus, jqxhr ) {
 	    $.getScript( "/3rdparty/underscore/underscore.js", function( data, textStatus, jqxhr ) {
-          console.log( "Load was performed." );
+
         });
         });
         });
@@ -198,5 +202,15 @@ $(document).on("ready",function(e){
             return "";
         }
     }
+    
+    
+	loadCSS = function(href,cb) {
+		var cssLink = $("<link rel='stylesheet' type='text/css' href='"+href+"'>");
+		$("head").append(cssLink);
+		if(typeof cb == "function"){
+			cb()
+		} 
+	};
+
 });
 

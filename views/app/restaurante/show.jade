@@ -1,39 +1,43 @@
 extends ../../layout
 block content
-	.row.initial
-		.col-md-12
+	.row.initial#restaurantPerfil
+		.col-xs-12.col-sm-10.col-centered
 			include ../../snipets/errors
-
-			h1 
-				a(href="#{restaurant.web}") #{restaurant.nombre}
+			if(restaurant.urlImagen)
+				.col-xs-12.col-md-8.col-centered
+					img.img-thumbnail.img-responsive(src="#{restaurant.urlImagen}" alt="")
+			.col-xs-6.col-centered.nombreRestaurant
+				h1 
+					a(href="#{restaurant.web}") #{restaurant.nombre}
 			if locals.rol && locals.loggedIn
 				if locals.rol.islocaladmin || locals.rol.isowner
 					a.editarrestaurante.btn.btn-success(href="/app/restaurante/edit") Editar Restaurant
+		.col-xs-12.col-sm-12.col-centered
 			.col-xs-12
-				.col-xs-4
+				.col-md-4
 					h3 Teléfono
-				.col-xs-8
+				.col-md-8
 					a(href="tel:#{restaurant.telefono}") #{restaurant.telefono}
 
 			.col-xs-12
-				.col-xs-4
+				.col-md-4
 					h3 Email
-				.col-xs-8
+				.col-md-8
 					a(href="mailto:#{restaurant.email}?subject=Hola #{restaurant.nombre} ") #{restaurant.email}
 						
 
 			.col-xs-12
-				.col-xs-4
+				.col-md-4
 					h3 Tipo
-				.col-xs-8
+				.col-md-8
 					| #{categoria.nombre}
 			.col-xs-12
-				.col-xs-4
+				.col-md-4
 					h3 Comuna
-				.col-xs-8
+				.col-md-8
 					| #{comuna.nombre}
 			.col-xs-12
-				.col-xs-4
+				.col-md-4
 					h3 Dirección
-				.col-xs-8
+				.col-md-8
 					| #{restaurant.direccion}

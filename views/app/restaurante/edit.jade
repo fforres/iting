@@ -1,12 +1,20 @@
 extends ../../layout
 
 block content
-	.row.initial
-		.col-xs-10.col-sm-10.col-centered
+	.row.initial#restaurantPerfil
+		.col-xs-12.col-sm-10.col-centered
 			include ../../snipets/errors
-			h1.col-md-12 Editar Restaurant: #{restaurant.nombre}
+			.col-xs-12.col-md-8.col-centered
+				img.img-thumbnail.img-responsive(src="#{restaurant.urlImagen}" alt="")
+			.col-xs-6.col-centered.nombreRestaurant
+				h3 Editar #{restaurant.nombre}
+		.col-xs-12.col-sm-12.col-centered
+			form.form-horizontal(name="loginForm" enctype="multipart/form-data" method="post" action="/api/uploadphotoRestaurante" )
+				.form-group
+					label(for="file").control-label.col-md-3 Foto del Local
+					.col-md-8
+						input.file(type="file" name="file" id="file" placeholder="File")
 			form.form-horizontal(name="loginForm" method="post" action="" )
-
 				.form-group
 					label(for="nombre").control-label.col-md-3 Nombre del Local
 					.col-md-8

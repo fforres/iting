@@ -1,4 +1,6 @@
 var _REQUEST = require("request");
+var multiparty = require('multiparty')
+
 var SearchRestauranteByCategoria = function(searchTerm, req, res) {
 		var ob = {
 			include: ["categoria", "comuna"],
@@ -421,27 +423,58 @@ var GetRestaurantesDeshabilitados = function(req, res) {
 }
 
 
-
+ 
 
 var cambiarFotoRestaurante = function(req,res) {
 	if (req && req.session && req.session.user && req.session.user.restaurant && req.session.user.restaurant.id) {
-		var idRestaurante = req.session.user.restaurant.id;
-		var ob = {
-			urlImagen: "TEST"
-		};
-		var stringOB = global.API_URL + "/restaurantes/" + idRestaurante;
-		_REQUEST({
-				method: 'PUT',
-				uri: stringOB,
-				json: true,
-				body: ob
-			},
-			function(error, response, body) {
-				console.log(body);
-				res.send(body)
-
-				if (response && response.statusCode == 200) {}
-			})
+        var fs = require('fs-extra');
+        var form = new multiparty.Form();
+        form.parse(req, function(err, fields, files) {
+            var laFoto = files.file[0];
+            var laExtension = laFoto.originalFilename.substring(laFoto.originalFilename.lastIndexOf("."));
+            var proyecturl = "/home/fforres/Applications/iting/public";
+            var newUrl ="/images/restaurante/"+req.session.user.restaurant.id+"/portada"+laExtension;
+            console.log(newUrl)
+            var newPath = proyecturl+newUrl
+            fs.remove(newPath,function(err){
+                if(err){
+                    console.log(err)
+                }else{
+                    
+                    
+                }
+                fs.move(
+                        laFoto.path,
+                        newPath,
+                        function(err){
+                            if (err){
+                                console.log(err)  
+                            } else{
+                                var idRestaurante = req.session.user.restaurant.id;
+                        		var ob = {
+                        			urlImagen: newUrl
+                        		};
+                        		var stringOB = global.API_URL + "/restaurantes/" + idRestaurante;
+                        		_REQUEST({
+                    				method: 'PUT',
+                    				uri: stringOB,
+                    				json: true,
+                    				body: ob
+                    			},
+                    			function(error, response, body) {
+                    				res.redirect("/app/restaurante/edit")
+                    
+                    				if (response && response.statusCode == 200) {}
+                    			})
+                            }
+                        })
+                        
+                        
+            })
+            
+        });
+        
+    
 	}else{
 	    res.send({error:{msg:"ERROR"}})
 	}
@@ -458,4 +491,4 @@ exports.RestaurantesDeshabilitados = GetRestaurantesDeshabilitados;
 exports.Update_RestauranteById = UpdateRestauranteById;
 exports.Delete_RestauranteById = DeleteRestauranteById;
 exports.Undelete_RestauranteById = UndeleteRestauranteById;
-exports.CambiarFotoRestaurante = cambiarFotoRestaurante;
+exports.CambiarFotoRestaurante = cambiarFotoRestaurante; 

@@ -111,3 +111,10 @@
     min-height:600px;
 }
 
+#restaurantPerfil{
+	
+}
+#restaurantPerfil .nombreRestaurant{
+	text-align: center;
+	padding-bottom:15px;
+}

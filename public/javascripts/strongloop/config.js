@@ -175,10 +175,13 @@ $(document).on("ready",function(e){
 	}
 	
 	if($("#inventario.calendario").length>0){
-	    $.getScript( "/3rdparty/responsive-calendar/js/responsive-calendar.min.js", function( data, textStatus, jqxhr ) {
-	    loadCSS( "/3rdparty/responsive-calendar/css/responsive-calendar.css", function( data, textStatus, jqxhr ) {
+	    $.getScript( "/3rdparty/underscore/underscore.js", function( data, textStatus, jqxhr ) {
+	    $.getScript( "/3rdparty/responsive-calendar/js/calendar.js", function( data, textStatus, jqxhr ) {
+	    loadCSS( "/3rdparty/responsive-calendar/css/calendar.css", function( data, textStatus, jqxhr ) {
+	    $.getScript( "/3rdparty/responsive-calendar/js/language/es-ES.js", function( data, textStatus, jqxhr ) {
 	    $.getScript( "/javascripts/strongloop/inventarioCalendario.js", function( data, textStatus, jqxhr ) {
-			
+        });
+        });
         });
         });
         });

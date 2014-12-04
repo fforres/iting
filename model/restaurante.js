@@ -419,6 +419,34 @@ var GetRestaurantesDeshabilitados = function(req, res) {
 			if (response && response.statusCode == 200) {}
 		})
 }
+
+
+
+
+var cambiarFotoRestaurante = function(req,res) {
+	if (req && req.session && req.session.user && req.session.user.restaurant && req.session.user.restaurant.id) {
+		var idRestaurante = req.session.user.restaurant.id;
+		var ob = {
+			urlImagen: "TEST"
+		};
+		var stringOB = global.API_URL + "/restaurantes/" + idRestaurante;
+		_REQUEST({
+				method: 'PUT',
+				uri: stringOB,
+				json: true,
+				body: ob
+			},
+			function(error, response, body) {
+				console.log(body);
+				res.send(body)
+
+				if (response && response.statusCode == 200) {}
+			})
+	}else{
+	    res.send({error:{msg:"ERROR"}})
+	}
+}
+
 exports.Search = SearchRestaurante;
 exports.SearchByComuna = SearchRestauranteByComuna;
 exports.SearchByCategoria = SearchRestauranteByCategoria;
@@ -430,3 +458,4 @@ exports.RestaurantesDeshabilitados = GetRestaurantesDeshabilitados;
 exports.Update_RestauranteById = UpdateRestauranteById;
 exports.Delete_RestauranteById = DeleteRestauranteById;
 exports.Undelete_RestauranteById = UndeleteRestauranteById;
+exports.CambiarFotoRestaurante = cambiarFotoRestaurante;

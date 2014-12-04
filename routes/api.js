@@ -3,6 +3,7 @@ var router = express.Router();
 var expressValidator = require('express-validator');
 var users = require('./../model/m_users.js');
 var passport = require('passport');
+var Restaurante = require('./../model/restaurante.js');
 
 // route middleware that will happen on every request
 router.use(function(req, res, next) {
@@ -23,6 +24,10 @@ router.get('/', function(req, res) {
 		title: 'Iting'
 	});
 });
+router.route('/uploadphotoRestaurante')
+    .post(function(req,res){
+        Restaurante.CambiarFotoRestaurante(req,res);
+    })
 
 router.route('/maps/areas')
 	.get(function(req, res) {

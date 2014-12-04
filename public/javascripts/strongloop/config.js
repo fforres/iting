@@ -175,6 +175,16 @@ $(document).on("ready",function(e){
 
 	}
 	
+	if($("#reportes.flujodiarioitems").length>0){
+	    $.getScript( "/javascripts/strongloop/reportes.js", function( data, textStatus, jqxhr ) {
+	    $.getScript( "/3rdparty/moment/moment.js", function( data, textStatus, jqxhr ) {
+	    $.getScript( "/3rdparty/underscore/underscore.js", function( data, textStatus, jqxhr ) {
+          console.log( "Load was performed." );
+        });
+        });
+        });
+	}
+
 	capitalize = function(s)
     {
         if(s){

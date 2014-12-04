@@ -1,0 +1,21 @@
+extends ../../layout
+block content
+    .row#inventario
+        include ../../snipets/errors
+        .col-xs-11.col-sm-11.col-centered
+            h3 Inventario
+        .col-xs-11.col-sm-11.col-centered.datepicker
+            .form-group.searchbox
+                p Selecciona una fecha para este Inventario (DD/MM/YY)
+                input#datepicker.form-control(type='text')
+        .col-xs-11.col-sm-11.col-centered.agregar
+            .form-group.searchbox
+                p Comienza a escribir para agregar un Item
+                input.form-control(type="text" data-restaurante="#{idRestaurant}" placeholder="Escribe aquí")
+            .col-xs-12.searchcontainer
+                .search.container-xs-height
+        .col-xs-11.col-sm-11.col-centered.agregados.container-xs-height
+        .col-xs-11.col-sm-11.col-centered.acciones.container-xs-height
+            .col-xs-12
+                a.btn.btn-info.crear.pull-right(href="#") Crear Inventario
+        .col-xs-11.col-sm-11.col-centered#itemslist

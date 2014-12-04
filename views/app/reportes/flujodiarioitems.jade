@@ -1,0 +1,27 @@
+extends ../../layout
+block content
+    include ../../snipets/errors
+    if idRestaurant
+        .row#reportes.flujodiarioitems(data-restaurantId="#{idRestaurant}")
+            .col-xs-12.col-sm-12.col-centered.datepicker
+                h1 Flujo de items
+            .col-xs-10.col-sm-10.col-centered.datepicker
+                .form-group.searchbox
+                    p Selecciona una fecha de Inicio
+                    input#datepickerInicio.form-control(type='text')
+                .form-group.searchbox
+                    p Selecciona una fecha de Termino
+                    input#datepickerFin.form-control(type='text')
+            .col-xs-10.col-sm-10.col-centered
+                a(href="#").btn.btn-success.float-right.getReporte Obtener Reporte
+            .col-xs-12.col-sm-12.reportecont
+                .col-xs-12.col-sm-12
+                    h2 Reporte
+                 .col-xs-12.col-sm-12.acciones
+                    a.btn.btn-info(target="_blank")
+                        i.fa.fa-fw.fa-save
+                        | Guardar Gráfico
+                #showgraph.col-xs-12.col-sm-12.reporte
+
+            
+            

@@ -95,9 +95,19 @@
     padding-top: 2px;
     margin-top: 2px;
     border-top: none;
-
 }
-
 #inventario .acciones .crear{
     margin-top:18px;
 }
+
+
+
+#reportes .reportecont .acciones{
+    display:none;
+}
+
+#reportes #showgraph.reporte{
+    display:none;
+    min-height:600px;
+}
+

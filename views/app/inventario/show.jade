@@ -1,0 +1,19 @@
+extends ../../layout
+
+block content
+	.row.initial#inventario.show(data-idinventario='#{id}' data-fecha='#{fechaformat}')
+		.col-xs-10.col-sm-10.col-centered
+			include ../../snipets/errors
+			h1.col-md-12 Inventario - #{fecha}
+			a(href='/app/inventario/#{id}/edit').btn.btn-success Editar
+		.col-xs-11.col-sm-11.col-centered
+			each entrada,i in entradas
+				.col-xs-12(data-entradaId="#{entrada.id}")
+					h2.nombre #{entrada.nombre}
+					h4.descripcion #{entrada.descripcion}
+					each tipomovimiento,i in entrada.tipomovimiento
+						.col-xs-12.col-md-10
+							h4
+								.pull-left #{tipomovimiento.nombre}
+								.pull-right #{tipomovimiento.cantidad}
+							

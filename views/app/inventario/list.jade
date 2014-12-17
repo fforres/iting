@@ -1,6 +1,8 @@
 extends ../../layout
 block content
-	.row.calendario#inventario
+	.row.calendario#inventario(data-restaurantId="#{idRestaurant}")
+		.col-xs-12
+			h2 Inventarios
 		.col-xs-12
 			#calendar
 				

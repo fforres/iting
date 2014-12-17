@@ -449,9 +449,10 @@ span[data-cal-date]:hover {
   opacity: 0.1;
   cursor: default;
 }
+/*
 .cal-day-today {
   background-color: #e8fde7;
-}
+}*/
 .cal-day-today span[data-cal-date] {
   color: darkgreen;
 }
@@ -512,4 +513,24 @@ a.cal-event-week {
 }
 .badge-important {
   background-color: #b94a48;
+}
+
+/*
+
+CUSTOM
+
+*/
+
+.cal-cell{
+	transition:background-color 1400ms ;
+}
+
+.cal-cell.tieneEvento{
+	transition:background-color 1400ms ;
+	background-color: rgba(207, 223, 204, 0.84);
+	cursor:pointer;
+}
+.cal-day-today {
+	transition:background-color 1400ms ;
+  	background-color: rgba(207, 223, 204, 0.84);
 }

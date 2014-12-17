@@ -1,11 +1,7 @@
-
 doctype html
 html
 	head
-		if title
-			title #{title}
-		else
-			title Iting.
+		title SmartMenu
 		meta(http-equiv='content-type', charset='UTF-8')
 		meta(name='viewport', content='width=device-width, initial-scale=1')
 		meta(http-equiv='X-UA-Compatible' content='IE=edge')
@@ -38,7 +34,11 @@ html
 	script(type='text/javascript' src='/3rdparty/konamikode/jquery.konami.min.js')
 	script(type="text/javascript" src="/3rdparty/bootstrap/bootstrap.min.js")
 	script(type="text/javascript" src="/3rdparty/bootstrap/bootstrap-fileinput-master/js/fileinput.min.js")
+	script(type="text/javascript" src="/3rdparty/underscore/underscore.js")
+	script(type="text/javascript" src="/3rdparty/moment/moment.js")
 	script(type='text/javascript' src='/javascripts/jquery.easing.js')
+	
+	
 	script(type="text/javascript" src="/3rdparty/googleCharts/charts.js")
 	script.
 		google.load("visualization", "1", {packages:["corechart"]});

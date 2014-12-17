@@ -4,8 +4,7 @@ block content
 	.row.initial
 		.col-xs-11.col-sm-11.col-centered
 			include ../../snipets/errors
-			.col-md-11
-				a(href="/admins/userses/new").btn.btn-default Nuevo User
+			h3 Lista de Usuarios
 			.col-md-11
 				.table-responsive
 					table.table.table-condensed
@@ -13,7 +12,7 @@ block content
 							tr
 								th #
 								th Nombre
-								th Roles
+								th Local
 								//th Local
 						tbody
 							each user,i in users
@@ -23,11 +22,4 @@ block content
 										strong
 											a(href="##{user.nombre}") #{user.email}
 									td
-										a(href="/admins/users/edit/#{user._id}/roles") Editar Roles
-									//each rol,k in user.rol
-										if (rol.nombre == "Waiter")
-											if rol.value 
-												td
-													a(href="/admins/users/edit/#{user._id}/asignaralocal") Asignar a local
-											else 
-												td
+										a(href="/admins/users/edit/#{user.id}/asignaralocal") Asignar

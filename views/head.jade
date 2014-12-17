@@ -7,7 +7,7 @@ nav(class="navbar navbar-fixed-top navbar-inverse" role="navigation")
 				span(class="icon-bar")
 				span(class="icon-bar")
 
-			a(class="navbar-brand" href="/") Iting
+			a(class="navbar-brand" href="/") SmartMenu
 
 		div(class="collapse navbar-collapse navbar-ex1-collapse")
 			ul.nav.navbar-nav
@@ -34,7 +34,9 @@ nav(class="navbar navbar-fixed-top navbar-inverse" role="navigation")
 									a(href="/app/items/") Buscar Item
 								li.divider
 								li
-									a(href="/app/inventario") Hacer Inventario
+									a(href="/app/inventario") Inventarios
+								li
+									a(href="/app/inventario/new") Hacer Inventario
 					if locals.rol.islocaladmin || locals.rol.isowner || locals.rol.ismesero
 						li
 							a(data-toggle="dropdown" href="#").dropdown-toggle Platos

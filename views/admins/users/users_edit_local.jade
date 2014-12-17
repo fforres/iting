@@ -1,0 +1,36 @@
+extends ../layoutAdmins
+
+block content
+	.row.initial
+		.col-xs-10.col-sm-10.col-centered
+				include ../../snipets/errors
+				h1.col-md-12 Asignar A Local: #{usuario.nombre}
+				form.form-horizontal(name="loginForm" method="post" action="")
+					.form-group
+						label.control-label.col-md-3 Id Usuario
+						.col-md-8
+							input.disabled.form-control(disabled name='userId' value="#{usuario.id}") 
+					
+					.form-group
+						label.control-label.col-md-3 Restaurante Actual
+						.col-md-8
+							if(restaurante && restaurante.restaurante && restaurante.restaurante.id)
+								input.disabled.form-control(disabled value="#{restaurante.restaurante.nombre}") 
+					
+					.form-group
+						label(for="restaurante").control-label.col-md-3 Nuevo Local
+						.col-md-8
+							select.form-control(name="restaurante" id="restaurante" placeholder="Comuna")
+								each cadarestaurante in restaurantes
+									if(restaurante && restaurante.restaurante)
+										if(cadarestaurante.id == restaurante.restaurante.id)
+											option(value="#{cadarestaurante.id}" selected) #{cadarestaurante.nombre}
+										else
+											option(value="#{cadarestaurante.id}") #{cadarestaurante.nombre}
+									else
+										option(value="#{cadarestaurante.id}") #{cadarestaurante.nombre}
+					
+					
+					.form-group
+						.col-md-8
+							button.btn.btn-default.pull-right(type="submit" value="Login") Editar Local

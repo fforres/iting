@@ -3,6 +3,7 @@ var db = mongojs("localhost/iting");
 var async = require("async");
 var crypto = require('crypto');
 var _ = require('underscore');
+var _REQUEST = require("request");
 
 
 function _ShowCreateUser(req, res) {
@@ -25,19 +26,102 @@ function _ShowEditUser(req, res) {
 	});
 }
 
-function _ShowUsersList(req, res) {
-	async.parallel({
-			users: function(callback) {
-				GetUsers(callback);
+
+function _ShowEditUser_AsignarALocal(req, res,id) {
+	
+	
+	_ACCESTOKEN="access_token="+req.session.user.key
+	var stringOB = global.API_URL + "/usuarios/"+id+"?"+_ACCESTOKEN
+	_REQUEST(
+    { 
+    	method: 'GET', 
+    	uri: stringOB,
+    	json:true
+    }  
+    , function (error, response, usuario) {
+		if(usuario){
+			if(usuario.error){
+
+			}else{
+			
+				var ob = 
+				{
+					include:["restaurante"],
+					where : 
+					{
+						usuarioId: usuario.id
+					}
+				}
+				_ACCESTOKEN="access_token="+req.session.user.key
+				var stringOB = global.API_URL + "/usuarios_restaurantes/?filter="+JSON.stringify(ob)+"&"+_ACCESTOKEN
+				_REQUEST(
+				{ 
+					method: 'GET', 
+					uri: stringOB,
+					json:true
+				}  
+				, function (error, response, usuariorestaurant) {
+						var stringOB = global.API_URL + "/restaurantes";
+						
+						_REQUEST(
+						{ 
+							method: 'GET', 
+							uri: stringOB,
+							json:true
+						}  
+						, function (error, response, restaurantes) {
+
+
+								res.render('admins/users/users_edit_local', {
+									title: 'Iting',
+									usuario: usuario,
+									restaurante: usuariorestaurant[0],
+									restaurantes:restaurantes
+								});
+						
+						})
+				})
+
 			}
-		},
-		function(err, results) {
-			res.render('admins/users/users_list', {
-				title: 'Iting',
-				users: results.users
-			});
 		}
-	);
+    })
+}
+
+function _ShowUsersList(req, res) {
+	
+	
+	
+	_ACCESTOKEN="access_token="+req.session.user.key
+
+	var ob = 
+	{
+		include:["restaurante"]
+	}
+	
+	
+	var stringOB = global.API_URL + "/usuarios?"+_ACCESTOKEN
+	_REQUEST(
+    { 
+    	method: 'GET', 
+    	uri: stringOB,
+    	json:true
+    }  
+    , function (error, response, body) {
+		if(body){
+			if(body.error){
+				
+			}else{
+				res.render('admins/users/users_list', {
+					title: 'Iting',
+					users: body
+				});
+			}
+		}
+		if(response && response.statusCode == 200){
+			}
+			
+	    })
+	    
 }
 
 function _ShowEditUser_Roles(req, res) {
@@ -171,7 +255,6 @@ exports.UpdateUser_Roles = function(req, res, id) {
 						callback(null, null);
 					}
 				], function(err, resultado) {
-					console.log(resultado[1]);
 					var usuarios = db.collection('usuarios');
 					usuarios.update({
 						_id: mongojs.ObjectId(id)
@@ -310,7 +393,63 @@ function _findUserById(id, cb) {
 	}
 
 }
+function _UpdateUser_AsignarALocal(req,res,id){
+	var ob = 
+	{
+		usuarioId: id
+	}
+	var stringOB = global.API_URL + "/usuarios_restaurantes/findOne?filter="+JSON.stringify(ob);
+						
+	_REQUEST(
+	{ 
+		method: 'GET', 
+		uri: stringOB,
+		json:true
+	}  
+	, function (error, response, body) {
+			var type = "PUT"
+			var stringOB = global.API_URL + "/usuarios_restaurantes";
 
+			if(body.error){
+				type = "POST"
+				stringOB = global.API_URL + "/usuarios_restaurantes";
+			}else{
+				stringOB = global.API_URL + "/usuarios_restaurantes/"+body.id;
+			}
+		
+			var ob = {
+				usuarioId : id,
+				restauranteId: req.body.restaurante
+			}
+			console.log(body)
+			console.log(ob)
+			console.log(type)
+			console.log(stringOB)
+			
+
+			_REQUEST(
+			{ 
+				method: type, 
+				uri: stringOB,
+				body:ob,
+				json:true
+			}  
+			, function (error, response, body) {
+				if(body.error){
+					req.flash('error', {
+						msg: "Error en el cambio de local"
+					});
+				}else{
+					req.flash('success', {
+						msg: "Local cambiado exitosamente"
+					});
+				}
+				res.redirect('/admins/users/edit/'+id+"/asignaralocal")
+			})
+			
+			
+	})
+}
 
 function makeSalt() {
 	return Math.round((new Date()
@@ -411,6 +550,8 @@ exports.ShowCreateUser = _ShowCreateUser;
 exports.ShowEditUser = _ShowEditUser;
 exports.ShowUsersList = _ShowUsersList;
 exports.ShowEditUser_Roles = _ShowEditUser_Roles;
+exports.ShowEditUser_AsignarALocal = _ShowEditUser_AsignarALocal;
+exports.UpdateUser_AsignarALocal = _UpdateUser_AsignarALocal;
 
 exports.findUserByEmail = _findUserByEmail;
 exports.findUserById = _findUserById;

@@ -64,6 +64,9 @@
     padding-bottom: 10px;
     border-bottom: white solid 2px;
 }
+
+
+
 #inventario .agregados .item:not(:last-child){
     display:none;
     padding-bottom: 10px;
@@ -101,6 +104,43 @@
 }
 
 
+#inventario.edit .agregados .item{
+    display:block;
+    padding-bottom: 10px;
+    border-bottom: white solid 2px;
+}
+#inventario.edit .agregados .item:not(:last-child){
+    padding-bottom: 10px;
+    border-bottom: none;
+}
+
+#inventario.edit .agregados .item .descripcion{
+    padding-bottom:20px;
+}
+#inventario.edit .agregados .item .movimientos.nuevo .input-group-addon{
+    display:none;
+}
+#inventario.edit .agregados .item .movimientos .input-group-addon{
+    display:table-cell;
+}
+
+
+#inventario.show .agregados .item{
+	display:block;
+    padding-bottom: 10px;
+    border-bottom: white solid 2px;
+}
+#inventario.show .agregados .item:not(:last-child){
+    padding-bottom: 10px;
+    border-bottom: none;
+}
+
+
+
+
+
+
+
 
 #reportes .reportecont .acciones{
     display:none;
@@ -118,3 +158,5 @@
 	text-align: center;
 	padding-bottom:15px;
 }
+
+

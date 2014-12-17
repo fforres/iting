@@ -6,6 +6,8 @@ var createUser = function(req, res) {
 		"password": req.body.password
 	};
 	var stringOB = global.API_URL + "/usuarios";
+	console.log("CREANDO")
+	console.log(ob)
 	_REQUEST(
     { 
     	method: 'POST',
@@ -15,12 +17,14 @@ var createUser = function(req, res) {
     }  , function (error, response, body) {
 		 
 	if(body){
+		console.log(body)
 		if(body.error){
 			req.flash('error', {
 				msg: body.error.message
 			});
 			res.redirect("/")
 		}else{
+			console.log("CREADO")
 			logInUser(req,res,body);
 		}
 	}
@@ -126,8 +130,6 @@ var getUserRestaurant = function(req,res,user,rol){
 		}
 	};
 	var stringOB2 = global.API_URL + "/usuarios_restaurantes?filter="+JSON.stringify(ob2)
-	console.log(ob2)
-	console.log(stringOB2)
 	_REQUEST(
     { 
     	method: 'GET', 
